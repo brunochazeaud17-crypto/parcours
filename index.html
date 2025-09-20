@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Chazeaud - DataOps/MLOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #feca57 75%, #48c9b0 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Glass Morphism Effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 1s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(26, 26, 46, 0.7);
+            font-weight: 500;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-image::before {
+            content: '👨‍💻';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            background: white;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .education-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+        }
+
+        .education-item strong {
+            display: block;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-item .detail {
+            color: rgba(26, 26, 46, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+            font-weight: 600;
+            color: #1a1a2e;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.3));
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Projects Navigation */
+        .projects-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #feca57);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+            background-size: 200% 200%;
+            animation: gradientRotate 3s linear infinite;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .project-card:hover::after {
+            opacity: 0.5;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+        }
+
+        .project-card p {
+            color: rgba(26, 26, 46, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 12px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+
+        /* Project Details Pages */
+        .project-page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .project-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            padding: 0.8rem 1.5rem;
+            color: #1a1a2e;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateX(-5px);
+        }
+
+        .project-detail-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-detail-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .implementation-section {
+            margin-bottom: 2rem;
+        }
+
+        .implementation-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .implementation-step {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .implementation-step:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .projects-nav {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">DataOps/MLOps Engineer | Automatisation & Infrastructure</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git & GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masterclass Project Page -->
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture & Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update && sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx & SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring & Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscription Zoom Project Page -->
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation & Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accompagnement Project Page -->
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit & Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build & Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring & Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
+                    </div>
