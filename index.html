@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-T">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno Chazeaud | Data & AI Solutions</title>
+    <title>Bruno Chazeaud | Data & IA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="background-shape shape1"></div>
     <div class="background-shape shape2"></div>
 
@@ -29,9 +28,7 @@
             <div class="hero-content">
                 <h1>Bruno Chazeaud</h1>
                 <h2>De la modélisation des risques financiers à la Science des Données</h2>
-                <p class="hero-pitch">
-                    Passionné par la valorisation de la donnée, je conçois et déploie des pipelines de données automatisés et des applications intelligentes. Je transforme des problématiques complexes en solutions techniques scalables et reproductibles pour le domaine de la Data et de l'IA.
-                </p>
+                <p class="hero-pitch">Passionné par la valorisation de la donnée, je conçois et déploie des pipelines de données automatisés et des applications intelligentes pour le domaine de la Data et de l'IA.</p>
                 <div class="hero-buttons">
                     <a href="#projets" class="cta-button">Explorer mes projets</a>
                     <a href="cv-bruno-chazeaud.pdf" class="cta-button secondary" target="_blank">Télécharger mon CV</a>
@@ -43,52 +40,29 @@
         </section>
 
         <section id="a-propos" class="container">
-            <div class="glass-card about-card">
+             <div class="glass-card about-card">
                 <h3>Mon parcours : de l'analyse quantitative à la Data Science</h3>
-                <p>
-                    Ma formation en <strong>Ingénierie des Risques Économiques et Financiers</strong> m'a doté de solides compétences en analyse quantitative, en statistique et en modélisation. Cette approche rigoureuse, appliquée initialement à la finance, est le socle sur lequel je construis aujourd'hui ma carrière en <strong>Data Science</strong>.
-                </p>
-                <p>
-                    J'ai transposé cette expertise analytique au monde de la tech pour concevoir des solutions data complètes. Mon objectif est de gérer l'intégralité du cycle de la donnée : de la mise en place d'une infrastructure fiable à la création de pipelines ETL automatisés pour rendre la donnée propre, accessible et prête à être exploitée par des modèles d'IA.
-                </p>
+                <p>Ma formation en <strong>Ingénierie des Risques Économiques et Financiers</strong> m'a doté de solides compétences en analyse quantitative et en modélisation. Cette approche rigoureuse est le socle sur lequel je construis aujourd'hui ma carrière en <strong>Data Science</strong>, en l'appliquant à la conception de solutions data complètes, de l'infrastructure à l'automatisation des flux.</p>
                 <ul>
                     <li><strong>Master 2</strong> - Ingénierie des Risques Économiques et Financiers - <em>Université de Bordeaux</em></li>
                     <li><strong>Licence</strong> - Économie Gestion - <em>Université de Bordeaux</em></li>
-                    <li><strong>Baccalauréat S</strong> (Spécialité Physique-Chimie) - <em>Cours Lamartine, Abidjan</em></li>
+                    <li><strong>Baccalauréat S</strong> - <em>Cours Lamartine, Abidjan</em></li>
                 </ul>
             </div>
         </section>
 
         <section id="projets" class="container">
-            <h2>Cas Pratiques</h2>
+            <h2>Mes Projets</h2>
             <div class="projects-grid">
-                
-                <article class="glass-card project-card">
-                    <h4>Infrastructure pour Applications Data (DataOps/MLOps)</h4>
-                    <p>Déploiement d'un environnement de production robuste et scalable avec Nginx et PM2, une fondation essentielle pour héberger des API de Machine Learning ou des dashboards data.</p>
-                    <span class="project-tag">DevOps</span>
-                    <span class="project-tag">CI/CD</span>
-                    <span class="project-tag">Nginx</span>
-                    <span class="project-tag">Docker</span>
-                </article>
-
-                <article class="glass-card project-card">
-                    <h4>Data Engineering - Pipeline de Collecte ETL</h4>
-                    <p>Conception d'un pipeline de données entièrement automatisé avec n8n pour extraire, transformer et charger des données entre différentes applications (Formulaire → Airtable → Email).</p>
-                    <span class="project-tag">Data Engineering</span>
-                    <span class="project-tag">ETL</span>
-                    <span class="project-tag">n8n</span>
-                     <span class="project-tag">API</span>
-                </article>
-
-                <article class="glass-card project-card">
-                    <h4>Intégration d'API et Données Transactionnelles</h4>
-                    <p>Mise en place d'un flux de données événementiel via l'intégration d'une API de paiement pour la collecte et l'exploitation de données transactionnelles en temps réel.</p>
-                    <span class="project-tag">API</span>
-                    <span class="project-tag">Webhooks</span>
-                    <span class="project-tag">Data Flow</span>
-                </article>
-
+                <a href="projet-masterclass.html" class="project-link-card">
+                    <h4>Automatisation de Masterclass</h4>
+                </a>
+                <a href="projet-zoom.html" class="project-link-card">
+                     <h4>Formulaire d'inscription Zoom</h4>
+                </a>
+                <a href="projet-accompagnement.html" class="project-link-card">
+                    <h4>Site d'accompagnement avec système de paiement</h4>
+                </a>
             </div>
         </section>
     </main>
@@ -99,6 +73,15 @@
         </div>
     </footer>
     
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
