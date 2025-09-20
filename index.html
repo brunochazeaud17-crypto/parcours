@@ -1,500 +1,763 @@
-Utilisateurs simultanés
+<!DOCTYPE html>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Chazeaud - DataOps/MLOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #feca57 75%, #48c9b0 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Glass Morphism Effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 1s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(26, 26, 46, 0.7);
+            font-weight: 500;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-image::before {
+            content: '👨‍💻';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            background: white;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .education-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+        }
+
+        .education-item strong {
+            display: block;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-item .detail {
+            color: rgba(26, 26, 46, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+            font-weight: 600;
+            color: #1a1a2e;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.3));
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Projects Navigation */
+        .projects-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #feca57);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+            background-size: 200% 200%;
+            animation: gradientRotate 3s linear infinite;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .project-card:hover::after {
+            opacity: 0.5;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+        }
+
+        .project-card p {
+            color: rgba(26, 26, 46, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 12px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+
+        /* Project Details Pages */
+        .project-page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .project-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            padding: 0.8rem 1.5rem;
+            color: #1a1a2e;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateX(-5px);
+        }
+
+        .project-detail-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-detail-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .implementation-section {
+            margin-bottom: 2rem;
+        }
+
+        .implementation-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .implementation-step {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .implementation-step:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .projects-nav {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masterclass Project Page -->
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Inscription Zoom Project Page -->
-        <div id="inscription-page" class="page">
-            <button class="back-button" onclick="showPage('main')">← Retour à l'accueil</button>
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
             
             <div class="glass-card">
                 <div class="project-detail-header">
                     <h2>📝 Inscription Zoom</h2>
                     <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
-                        Système d'inscription automatisé avec workflow n8n - Automatisation complète du parcours client
+                        Système d'inscription automatisé pour les webinaires de Madame Y
                     </p>
                 </div>
-            </div>
 
-            <div class="glass-card">
-                <h3 class="section-title">Objectif du Projet</h3>
-                <p style="line-height: 1.8; color: rgba(26, 26, 46, 0.9);">
-                    Madame Y organisait régulièrement des webinaires Zoom et gérait manuellement les inscriptions, 
-                    ce qui prenait énormément de temps et générait des erreurs. L'objectif était de créer un système 
-                    100% automatisé qui gère l'inscription, la validation, l'enregistrement des données et l'envoi 
-                    des confirmations sans aucune intervention manuelle.
-                </p>
-                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                    <strong>Problématiques à résoudre :</strong>
-                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                        <li>Éliminer la saisie manuelle des inscriptions</li>
-                        <li>Garantir 0% de perte de données prospects</li>
-                        <li>Envoi instantané des confirmations</li>
-                        <li>Centralisation des données dans Airtable</li>
-                        <li>Gestion des doublons et validation des emails</li>
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
                     </ul>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 class="section-title">🔧 Étapes de Création</h3>
-                
-                <div class="implementation-step">
-                    <span class="step-number">1</span>
-                    <strong>Conception du Formulaire d'Inscription</strong>
-                    <p>Développement d'un formulaire responsive avec validation côté client et serveur</p>
-                    <div class="code-block">
-                        // Validation Frontend avec regex<br>
-                        const validateEmail = (email) => {<br>
-                        &nbsp;&nbsp;const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;<br>
-                        &nbsp;&nbsp;return re.test(email);<br>
-                        }<br><br>
-                        // Envoi sécurisé avec CSRF protection<br>
-                        fetch('/api/inscription', {<br>
-                        &nbsp;&nbsp;method: 'POST',<br>
-                        &nbsp;&nbsp;headers: {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;'Content-Type': 'application/json',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;'X-CSRF-Token': csrfToken<br>
-                        &nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;body: JSON.stringify(formData)<br>
-                        })
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Développement frontend sécurisé, validation de données, UX/UI
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">2</span>
-                    <strong>Configuration du Workflow n8n</strong>
-                    <p>Mise en place de l'instance n8n self-hosted avec Docker pour contrôle total</p>
-                    <div class="code-block">
-                        # Docker Compose pour n8n<br>
-                        version: '3.8'<br>
-                        services:<br>
-                        &nbsp;&nbsp;n8n:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;image: n8nio/n8n<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- N8N_WEBHOOK_URL=https://n8n.domain.com/<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- N8N_ENCRYPTION_KEY=${N8N_KEY}<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ./n8n-data:/home/node/.n8n<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;ports:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- "5678:5678"
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Orchestration de workflows, n8n administration, Docker deployment
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">3</span>
-                    <strong>Webhook d'Entrée & Validation</strong>
-                    <p>Configuration du webhook n8n avec validation et transformation des données</p>
-                    <div class="code-block">
-                        // Workflow n8n - Node 1: Webhook<br>
-                        {<br>
-                        &nbsp;&nbsp;"webhookPath": "inscription-zoom",<br>
-                        &nbsp;&nbsp;"responseMode": "onReceived",<br>
-                        &nbsp;&nbsp;"responseData": "allEntries"<br>
-                        }<br><br>
-                        // Node 2: Data Validation<br>
-                        if (!items[0].json.email || !isValidEmail(items[0].json.email)) {<br>
-                        &nbsp;&nbsp;throw new Error('Email invalide');<br>
-                        }<br><br>
-                        // Node 3: Check Duplicates<br>
-                        const existingRecords = await airtable.search(email);<br>
-                        if (existingRecords.length > 0) {<br>
-                        &nbsp;&nbsp;return { status: 'already_registered' };<br>
-                        }
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> API design, webhook security, data validation pipelines
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">4</span>
-                    <strong>Intégration Airtable API</strong>
-                    <p>Connexion bidirectionnelle avec Airtable pour stockage et récupération des données</p>
-                    <div class="code-block">
-                        // Configuration Airtable dans n8n<br>
-                        const airtableConfig = {<br>
-                        &nbsp;&nbsp;baseId: 'appXXXXXXXXXXXXXX',<br>
-                        &nbsp;&nbsp;tableName: 'Inscriptions_Webinaire',<br>
-                        &nbsp;&nbsp;apiKey: process.env.AIRTABLE_API_KEY<br>
-                        };<br><br>
-                        // Création d'enregistrement avec métadonnées<br>
-                        await airtable.create({<br>
-                        &nbsp;&nbsp;fields: {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Email": email,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Nom": name,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Date_Inscription": new Date().toISOString(),<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Webinaire_ID": webinarId,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Source": "Formulaire_Site",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Status": "Confirmé",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"Tags": ["Prospect", "Webinaire_2024"]<br>
-                        &nbsp;&nbsp;}<br>
-                        });
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> API integration, database management, data structuring
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">5</span>
-                    <strong>Système d'Email Automatisé</strong>
-                    <p>Configuration SMTP et templates personnalisés avec variables dynamiques</p>
-                    <div class="code-block">
-                        // Template Email avec personnalisation<br>
-                        const emailTemplate = `<br>
-                        &nbsp;&nbsp;Bonjour {{firstName}},<br><br>
-                        &nbsp;&nbsp;Votre inscription au webinaire "{{webinarTitle}}"<br>
-                        &nbsp;&nbsp;du {{webinarDate}} est confirmée !<br><br>
-                        &nbsp;&nbsp;Lien Zoom : {{zoomLink}}<br>
-                        &nbsp;&nbsp;Mot de passe : {{zoomPassword}}<br><br>
-                        &nbsp;&nbsp;Calendrier : {{calendarLink}}<br>
-                        `;<br><br>
-                        // Envoi via SMTP avec retry logic<br>
-                        const sendEmail = async (data, retries = 3) => {<br>
-                        &nbsp;&nbsp;try {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;await smtp.send(data);<br>
-                        &nbsp;&nbsp;} catch (error) {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;if (retries > 0) {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await sleep(2000);<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return sendEmail(data, retries - 1);<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                        &nbsp;&nbsp;}<br>
-                        };
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Email automation, SMTP configuration, template engines, retry mechanisms
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">6</span>
-                    <strong>Monitoring & Analytics</strong>
-                    <p>Tableau de bord pour suivre les performances et détecter les anomalies</p>
-                    <div class="code-block">
-                        // Métriques collectées<br>
-                        const metrics = {<br>
-                        &nbsp;&nbsp;total_inscriptions: count(),<br>
-                        &nbsp;&nbsp;conversion_rate: (confirmed / total) * 100,<br>
-                        &nbsp;&nbsp;email_delivery_rate: (delivered / sent) * 100,<br>
-                        &nbsp;&nbsp;avg_processing_time: avgTime,<br>
-                        &nbsp;&nbsp;error_rate: (errors / total) * 100<br>
-                        };<br><br>
-                        // Alertes automatiques<br>
-                        if (metrics.error_rate > 5) {<br>
-                        &nbsp;&nbsp;sendAlert('High error rate detected');<br>
-                        }
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Monitoring, analytics, KPI tracking, alerting systems
-                    </p>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 class="section-title">🎯 Compétences DataOps/MLOps Acquises</h3>
-                <div class="skills-grid">
-                    <span class="skill-badge">Workflow Automation</span>
-                    <span class="skill-badge">API Integration</span>
-                    <span class="skill-badge">Data Validation</span>
-                    <span class="skill-badge">ETL Pipelines</span>
-                    <span class="skill-badge">Webhook Management</span>
-                    <span class="skill-badge">Database Operations</span>
-                    <span class="skill-badge">Email Automation</span>
-                    <span class="skill-badge">Error Handling</span>
-                    <span class="skill-badge">Monitoring & Alerting</span>
-                    <span class="skill-badge">Docker Deployment</span>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 class="section-title">📊 Résultats Obtenus</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-                    <div class="metric-card">
-                        <div class="icon">⏱️</div>
-                        <strong>100%</strong><br>
-                        Automatisation
-                    </div>
-                    <div class="metric-card">
-                        <div class="icon">📧</div>
-                        <strong>&lt; 5 sec</strong><br>
-                        Délai confirmation
-                    </div>
-                    <div class="metric-card">
-                        <div class="icon">✅</div>
-                        <strong>0%</strong><br>
-                        Perte de données
-                    </div>
-                    <div class="metric-card">
-                        <div class="icon">🎯</div>
-                        <strong>99.8%</strong><br>
-                        Taux de délivrabilité
-                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Accompagnement Project Page -->
-        <div id="accompagnement-page" class="page">
-            <button class="back-button" onclick="showPage('main')">← Retour à l'accueil</button>
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
             
             <div class="glass-card">
                 <div class="project-detail-header">
                     <h2>💳 Système de Paiement - Accompagnement</h2>
                     <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
-                        Solution de paiement sécurisée et automatisée - Infrastructure complète avec Docker et CI/CD
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
                     </p>
                 </div>
-            </div>
 
-            <div class="glass-card">
-                <h3 class="section-title">📋 Objectif du Projet</h3>
-                <p style="line-height: 1.8; color: rgba(26, 26, 46, 0.9);">
-                    Madame Y proposait des services d'accompagnement premium et avait besoin d'un système de paiement 
-                    professionnel, sécurisé et simple d'utilisation. L'enjeu était de créer une solution qui inspire 
-                    confiance aux clients tout en automatisant la gestion des paiements, factures et accès aux services.
-                </p>
-                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                    <strong>Exigences critiques :</strong>
-                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                        <li>Conformité PCI-DSS pour sécurité bancaire</li>
-                        <li>Support multi-devises et multi-moyens de paiement</li>
-                        <li>Génération automatique de factures</li>
-                        <li>Gestion des abonnements récurrents</li>
-                        <li>Dashboard analytics en temps réel</li>
-                        <li>Taux de disponibilité 99.99%</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 class="section-title">🔧 Étapes de Création</h3>
-                
-                <div class="implementation-step">
-                    <span class="step-number">1</span>
-                    <strong>Architecture Microservices avec Docker</strong>
-                    <p>Conception d'une architecture scalable et résiliente basée sur des conteneurs</p>
-                    <div class="code-block">
-                        # Architecture microservices<br>
-                        .<br>
-                        ├── payment-api/<br>
-                        │   ├── Dockerfile<br>
-                        │   ├── src/<br>
-                        │   └── tests/<br>
-                        ├── invoice-service/<br>
-                        │   ├── Dockerfile<br>
-                        │   └── src/<br>
-                        ├── notification-service/<br>
-                        │   ├── Dockerfile<br>
-                        │   └── src/<br>
-                        └── docker-compose.yml<br><br>
-                        # Dockerfile optimisé multi-stage<br>
-                        FROM node:18-alpine AS builder<br>
-                        WORKDIR /app<br>
-                        COPY package*.json ./<br>
-                        RUN npm ci --only=production<br><br>
-                        FROM node:18-alpine<br>
-                        RUN apk add --no-cache dumb-init<br>
-                        USER node<br>
-                        COPY --from=builder /app/node_modules ./node_modules<br>
-                        COPY --chown=node:node . .<br>
-                        ENTRYPOINT ["dumb-init", "--"]<br>
-                        CMD ["node", "server.js"]
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Docker, microservices architecture, container orchestration
-                    </p>
-                </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">2</span>
-                    <strong>Intégration Stripe API Sécurisée</strong>
-                    <p>Implementation complète avec tokenisation et webhooks pour paiements sécurisés</p>
-                    <div class="code-block">
-                        // Configuration Stripe avec best practices<br>
-                        const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);<br><br>
-                        // Création de session de paiement<br>
-                        const session = await stripe.checkout.sessions.create({<br>
-                        &nbsp;&nbsp;payment_method_types: ['card', 'sepa_debit', 'ideal'],<br>
-                        &nbsp;&nbsp;line_items: [{<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;price_data: {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency: 'eur',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;product_data: {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: 'Accompagnement Premium',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata: { client_id, service_id }<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unit_amount: amount * 100<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;quantity: 1<br>
-                        &nbsp;&nbsp;}],<br>
-                        &nbsp;&nbsp;mode: 'subscription',<br>
-                        &nbsp;&nbsp;success_url: `${DOMAIN}/success?session_id={CHECKOUT_SESSION_ID}`,<br>
-                        &nbsp;&nbsp;cancel_url: `${DOMAIN}/cancel`,<br>
-                        &nbsp;&nbsp;metadata: {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;client_email: email,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;service_type: 'premium_coaching'<br>
-                        &nbsp;&nbsp;}<br>
-                        });
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Payment gateway integration, PCI compliance, webhook handling
-                    </p>
-                </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">3</span>
-                    <strong>Pipeline CI/CD Complet</strong>
-                    <p>Automatisation totale du build, test et déploiement avec GitHub Actions</p>
-                    <div class="code-block">
-                        name: CI/CD Pipeline<br>
-                        on:<br>
-                        &nbsp;&nbsp;push:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;branches: [main, develop]<br><br>
-                        jobs:<br>
-                        &nbsp;&nbsp;security-scan:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: aquasecurity/trivy-action@master<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scan-type: 'fs'<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scan-ref: '.'<br><br>
-                        &nbsp;&nbsp;test:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: npm test<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: npm run test:integration<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: npm run test:e2e<br><br>
-                        &nbsp;&nbsp;build-and-push:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;needs: [security-scan, test]<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Build and push Docker image<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: |<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;docker buildx build --platform linux/amd64,linux/arm64 \<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-t registry/payment-service:${{ github.sha }} \<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--push .
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> CI/CD, automated testing, security scanning, multi-platform builds
-                    </p>
-                </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">4</span>
-                    <strong>Infrastructure as Code avec Docker Compose</strong>
-                    <p>Orchestration complète de l'environnement avec configuration déclarative</p>
-                    <div class="code-block">
-                        version: '3.8'<br><br>
-                        services:<br>
-                        &nbsp;&nbsp;payment-api:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;build: ./payment-api<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- NODE_ENV=production<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DATABASE_URL=postgresql://user:pass@db:5432/payments<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;depends_on:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;condition: service_healthy<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;healthcheck:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test: ["CMD", "curl", "-f", "http://localhost:3000/health"]<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interval: 30s<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeout: 10s<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retries: 3<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;deploy:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;replicas: 3<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;restart_policy:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;condition: on-failure<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_attempts: 3<br><br>
-                        &nbsp;&nbsp;db:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;image: postgres:15-alpine<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- postgres_data:/var/lib/postgresql/data<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- POSTGRES_PASSWORD=${DB_PASSWORD}<br><br>
-                        &nbsp;&nbsp;redis:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;image: redis:7-alpine<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;command: redis-server --appendonly yes<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- redis_data:/data
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> IaC, container orchestration, service discovery, health monitoring
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">5</span>
-                    <strong>Monitoring & Observabilité MLOps</strong>
-                    <p>Stack complète de monitoring avec métriques, logs et traces</p>
-                    <div class="code-block">
-                        // Prometheus metrics<br>
-                        const promClient = require('prom-client');<br>
-                        const register = new promClient.Registry();<br><br>
-                        // Custom metrics for ML/DataOps<br>
-                        const paymentSuccessRate = new promClient.Gauge({<br>
-                        &nbsp;&nbsp;name: 'payment_success_rate',<br>
-                        &nbsp;&nbsp;help: 'Payment success rate over last hour',<br>
-                        &nbsp;&nbsp;labelNames: ['payment_method', 'currency']<br>
-                        });<br><br>
-                        const fraudDetectionScore = new promClient.Histogram({<br>
-                        &nbsp;&nbsp;name: 'fraud_detection_score',<br>
-                        &nbsp;&nbsp;help: 'ML fraud detection model scores',<br>
-                        &nbsp;&nbsp;buckets: [0.1, 0.3, 0.5, 0.7, 0.9]<br>
-                        });<br><br>
-                        // DataOps pipeline metrics<br>
-                        const dataProcessingLatency = new promClient.Histogram({<br>
-                        &nbsp;&nbsp;name: 'data_processing_latency_seconds',<br>
-                        &nbsp;&nbsp;help: 'Latency of data processing pipeline',<br>
-                        &nbsp;&nbsp;labelNames: ['stage', 'status']<br>
-                        });<br><br>
-                        // Export metrics endpoint<br>
-                        app.get('/metrics', async (req, res) => {<br>
-                        &nbsp;&nbsp;res.set('Content-Type', register.contentType);<br>
-                        &nbsp;&nbsp;res.end(await register.metrics());<br>
-                        });
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Observability, metrics collection, ML monitoring, DataOps pipelines
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">6</span>
-                    <strong>Automatisation & Orchestration n8n</strong>
-                    <p>Workflows automatisés pour facturation, notifications et gestion des accès</p>
-                    <div class="code-block">
-                        // Workflow n8n pour automatisation complète<br>
-                        {<br>
-                        &nbsp;&nbsp;"nodes": [<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Stripe Webhook",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "n8n-nodes-base.webhook",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"webhookPath": "stripe-events"<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Process Payment",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "n8n-nodes-base.function",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"functionCode": "// Validate and process payment\n// Update customer status\n// Trigger access provisioning"<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Generate Invoice",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "n8n-nodes-base.pdfGenerate",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"template": "invoice_template.html"<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Send Notifications",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"type": "n8n-nodes-base.emailSend",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"attachments": ["invoice.pdf"]<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                        &nbsp;&nbsp;]<br>
-                        }<!DOCTYPE html>
-<html lang="fr">
+</div></div></div></div></body></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -677,6 +940,36 @@ Utilisateurs simultanés
             font-size: 0.95rem;
         }
 
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+            font-weight: 600;
+            color: #1a1a2e;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.3));
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         /* Projects Navigation */
         .projects-nav {
             display: grid;
@@ -703,7 +996,6 @@ Utilisateurs simultanés
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
         .project-card::after {
@@ -774,13 +1066,13 @@ Utilisateurs simultanés
         }
 
         /* Project Details Pages */
-        .page {
+        .project-page {
             display: none;
+            animation: fadeIn 0.5s ease;
         }
 
-        .page.active {
+        .project-page.active {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
@@ -808,8 +1100,6 @@ Utilisateurs simultanés
             transition: all 0.3s ease;
             margin-bottom: 2rem;
             cursor: pointer;
-            border: none;
-            font-size: 1rem;
         }
 
         .back-button:hover {
@@ -830,17 +1120,8 @@ Utilisateurs simultanés
             background-clip: text;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #1a1a2e;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
         .implementation-section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .implementation-section h3 {
@@ -894,6 +1175,1952 @@ Utilisateurs simultanés
             font-weight: 600;
         }
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .projects-nav {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masterclass Project Page -->
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscription Zoom Project Page -->
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accompagnement Project Page -->
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
+                    </div>
+</div></div></div></div></body>
+<div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masterclass Project Page -->
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscription Zoom Project Page -->
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accompagnement Project Page -->
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
+                    </div>
+</div></div></div></div>
+<!-- Main Page -->
+<div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+<div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+<div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+<div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+<div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+<!-- Masterclass Project Page -->
+<div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Inscription Zoom Project Page -->
+<div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+<!-- Accompagnement Project Page -->
+<div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
+                    </div>
+</div></div></div>
+<div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masterclass Project Page -->
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscription Zoom Project Page -->
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accompagnement Project Page -->
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
+                    </div>
+</div></div></div></div>
+<body>
+    <div class="container">
+        <!-- Main Page -->
+        <div id="main-page" class="page">
+            <div class="header floating">
+                <h1>Bruno Chazeaud</h1>
+                <p class="subtitle">Parcours et projets personnels</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="profile-section">
+                    <div class="profile-image"></div>
+                    <div class="profile-content">
+                        <h2>Mon Parcours</h2>
+                        <div class="education-item">
+                            <strong>🎓 BAC S - Spécialité Physique-Chimie</strong>
+                            <span class="detail">Cours Lamartine, Abidjan, Côte d'Ivoire</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>📊 Licence Économie-Gestion</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                        <div class="education-item">
+                            <strong>💼 Master 2 Ingénierie des Risques Économiques et Financiers</strong>
+                            <span class="detail">Université de Bordeaux, France - Mention Assez Bien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
+                <div class="projects-nav">
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Masterclass Project Page -->
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>🎯 Masterclass Site</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Plateforme de formation développée pour Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscription Zoom Project Page -->
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accompagnement Project Page -->
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
+            <div class="glass-card">
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
+                    </div>
+</div></div></div></div></body>
+<html lang="fr"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Chazeaud - DataOps/MLOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #feca57 75%, #48c9b0 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Glass Morphism Effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 1s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(26, 26, 46, 0.7);
+            font-weight: 500;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-image::before {
+            content: '👨‍💻';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            background: white;
+            width: calc(100% - 8px);
+            height: calc(100% - 8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .education-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+        }
+
+        .education-item strong {
+            display: block;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-item .detail {
+            color: rgba(26, 26, 46, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
         .skill-badge {
             background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
             border: 1px solid rgba(255, 255, 255, 0.4);
@@ -904,8 +3131,6 @@ Utilisateurs simultanés
             color: #1a1a2e;
             transition: all 0.3s ease;
             cursor: default;
-            display: inline-block;
-            margin: 0.3rem;
         }
 
         .skill-badge:hover {
@@ -914,24 +3139,209 @@ Utilisateurs simultanés
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .skills-grid {
+        /* Projects Navigation */
+        .projects-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #feca57);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+            background-size: 200% 200%;
+            animation: gradientRotate 3s linear infinite;
+        }
+
+        @keyframes gradientRotate {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .project-card:hover::after {
+            opacity: 0.5;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+        }
+
+        .project-card p {
+            color: rgba(26, 26, 46, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 1rem;
         }
 
-        .metric-card {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 12px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            color: #1a1a2e;
+            font-weight: 500;
         }
 
-        .metric-card .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        /* Project Details Pages */
+        .project-page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .project-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            padding: 0.8rem 1.5rem;
+            color: #1a1a2e;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateX(-5px);
+        }
+
+        .project-detail-header {
+            margin-bottom: 2rem;
+        }
+
+        .project-detail-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .implementation-section {
+            margin-bottom: 2rem;
+        }
+
+        .implementation-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .implementation-step {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .implementation-step:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
         }
 
         /* Responsive Design */
@@ -963,20 +3373,15 @@ Utilisateurs simultanés
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
-        /* Main page specific */
-        #main-page {
-            display: block;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Main Page -->
-        <div id="main-page" class="page active">
+        <div id="main-page" class="page">
             <div class="header floating">
                 <h1>Bruno Chazeaud</h1>
-                <p class="subtitle">DataOps/MLOps Engineer | Automatisation & Infrastructure</p>
+                <p class="subtitle">Parcours et projets personnels</p>
             </div>
 
             <div class="glass-card">
@@ -1001,246 +3406,283 @@ Utilisateurs simultanés
             </div>
 
             <div class="glass-card">
+                <div class="skills-section">
+                    <h2>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Git &amp; GitHub</div>
+                        <div class="skill-badge">CI/CD</div>
+                        <div class="skill-badge">DataOps/MLOps</div>
+                        <div class="skill-badge">Docker</div>
+                        <div class="skill-badge">n8n Workflows</div>
+                        <div class="skill-badge">Nginx</div>
+                        <div class="skill-badge">PM2</div>
+                        <div class="skill-badge">API Integration</div>
+                        <div class="skill-badge">Airtable</div>
+                        <div class="skill-badge">Hostinger</div>
+                        <div class="skill-badge">SSL/TLS</div>
+                        <div class="skill-badge">Python</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
                 <h2 style="margin-bottom: 2rem;">Mes Projets pour Madame Y</h2>
                 <div class="projects-nav">
-                    <div class="project-card" onclick="showPage('masterclass')">
-                        <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
-                        <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">GitHub Actions</span>
-                            <span class="tech-tag">PM2</span>
-                            <span class="tech-tag">Nginx</span>
-                            <span class="tech-tag">SSL</span>
+                    <a href="#" class="project-link" onclick="showProject('masterclass'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">🎯</span> Masterclass Site</h3>
+                            <p>Plateforme de formation en ligne avec déploiement automatisé sur infrastructure cloud</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">PM2</span>
+                                <span class="tech-tag">Nginx</span>
+                                <span class="tech-tag">SSL</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-card" onclick="showPage('inscription')">
-                        <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
-                        <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">n8n</span>
-                            <span class="tech-tag">Airtable</span>
-                            <span class="tech-tag">Email API</span>
-                            <span class="tech-tag">Webhooks</span>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('inscription'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">📝</span> Inscription Zoom</h3>
+                            <p>Système d'inscription automatisé avec workflow n8n et intégration Airtable</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">n8n</span>
+                                <span class="tech-tag">Airtable</span>
+                                <span class="tech-tag">Email API</span>
+                                <span class="tech-tag">Webhooks</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-card" onclick="showPage('accompagnement')">
-                        <h3><span class="project-icon">💳</span> Accompagnement</h3>
-                        <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Stripe API</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">CI/CD</span>
-                            <span class="tech-tag">Security</span>
+                    </a>
+                    <a href="#" class="project-link" onclick="showProject('accompagnement'); return false;">
+                        <div class="project-card">
+                            <h3><span class="project-icon">💳</span> Accompagnement</h3>
+                            <p>Solution de paiement sécurisée avec système d'automatisation complet</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Stripe API</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">CI/CD</span>
+                                <span class="tech-tag">Security</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
 
         <!-- Masterclass Project Page -->
-        <div id="masterclass-page" class="page">
-            <button class="back-button" onclick="showPage('main')">← Retour à l'accueil</button>
+        <div id="masterclass-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
             
             <div class="glass-card">
                 <div class="project-detail-header">
                     <h2>🎯 Masterclass Site</h2>
                     <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
-                        Plateforme de formation développée pour Madame Y - De la conception au déploiement production
+                        Plateforme de formation développée pour Madame Y
                     </p>
                 </div>
-            </div>
 
+                <div class="implementation-section">
+                    <h3>Architecture &amp; Déploiement</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Infrastructure Cloud avec Hostinger</strong>
+                        <p>Configuration d'un serveur VPS avec accès SSH et mise en place de l'environnement de production</p>
+                        <div class="code-block">
+                            ssh user@server.hostinger.com<br>
+                            sudo apt update &amp;&amp; sudo apt upgrade<br>
+                            sudo apt install nodejs npm nginx
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Pipeline CI/CD avec GitHub Actions</strong>
+                        <p>Automatisation du déploiement via <span class="highlight">GitHub Actions</span> avec tests et validation</p>
+                        <div class="code-block">
+                            name: Deploy to Production<br>
+                            on: push to main<br>
+                            jobs: build → test → deploy
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Gestion des Processus avec PM2</strong>
+                        <p>Utilisation de <span class="highlight">PM2</span> pour la gestion des processus Node.js avec auto-restart et monitoring</p>
+                        <div class="code-block">
+                            pm2 start app.js --name "masterclass"<br>
+                            pm2 startup<br>
+                            pm2 save
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Configuration Nginx &amp; SSL</strong>
+                        <p>Mise en place du reverse proxy <span class="highlight">Nginx</span> et installation du certificat SSL Let's Encrypt</p>
+                        <div class="code-block">
+                            server {<br>
+                            &nbsp;&nbsp;listen 443 ssl http2;<br>
+                            &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
+                            &nbsp;&nbsp;location / { proxy_pass http://localhost:3000; }<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Compétences DataOps/MLOps Démontrées</h3>
+                    <div class="skills-grid">
+                        <div class="skill-badge">Infrastructure as Code</div>
+                        <div class="skill-badge">Continuous Deployment</div>
+                        <div class="skill-badge">Container Orchestration</div>
+                        <div class="skill-badge">Monitoring &amp; Logging</div>
+                        <div class="skill-badge">Security Best Practices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inscription Zoom Project Page -->
+        <div id="inscription-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
             <div class="glass-card">
-                <h3 class="section-title">📋 Objectif du Projet</h3>
-                <p style="line-height: 1.8; color: rgba(26, 26, 46, 0.9);">
-                    Madame Y avait besoin d'une plateforme moderne et scalable pour héberger ses masterclasses en ligne. 
-                    L'objectif était de créer une solution complète avec inscription automatisée, gestion des contenus, 
-                    et une infrastructure robuste capable de gérer des pics de trafic lors des lancements.
-                </p>
-                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                    <strong>Défis techniques :</strong>
-                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                        <li>Haute disponibilité (99.9% uptime requis)</li>
-                        <li>Déploiement sans interruption de service</li>
-                        <li>Sécurisation des données utilisateurs</li>
-                        <li>Scalabilité automatique</li>
+                <div class="project-detail-header">
+                    <h2>📝 Inscription Zoom</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Système d'inscription automatisé pour les webinaires de Madame Y
+                    </p>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Pipeline d'Automatisation n8n</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Webhook d'Entrée</strong>
+                        <p>Configuration d'un <span class="highlight">webhook n8n</span> pour recevoir les données du formulaire client</p>
+                        <div class="code-block">
+                            POST https://n8n.domain.com/webhook/inscription<br>
+                            Content-Type: application/json<br>
+                            { "email": "client@email.com", "name": "Client", "webinar": "id" }
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Validation &amp; Transformation des Données</strong>
+                        <p>Pipeline de validation avec <span class="highlight">DataOps</span> pour assurer la qualité des données</p>
+                        <div class="code-block">
+                            // Validation Schema<br>
+                            validate_email() → normalize_data() → check_duplicates()
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Intégration Airtable</strong>
+                        <p>Stockage structuré dans <span class="highlight">Airtable</span> avec API REST</p>
+                        <div class="code-block">
+                            await airtable.create({<br>
+                            &nbsp;&nbsp;fields: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Email: email,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Name: name,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Registration_Date: new Date()<br>
+                            &nbsp;&nbsp;}<br>
+                            })
+                        </div>
+                    </div>
+
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Email de Confirmation Automatisé</strong>
+                        <p>Envoi d'emails personnalisés via <span class="highlight">SMTP API</span></p>
+                        <div class="code-block">
+                            sendEmail({<br>
+                            &nbsp;&nbsp;template: 'confirmation',<br>
+                            &nbsp;&nbsp;variables: { name, webinar_link, date }<br>
+                            })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-section">
+                    <h3>Architecture du Workflow</h3>
+                    <p>Le workflow n8n implémente les principes <span class="highlight">DataOps</span> :</p>
+                    <ul style="list-style: none; padding: 1rem;">
+                        <li>✅ Validation automatique des données</li>
+                        <li>✅ Monitoring en temps réel</li>
+                        <li>✅ Gestion des erreurs avec retry logic</li>
+                        <li>✅ Logging complet pour audit trail</li>
+                        <li>✅ Scalabilité horizontale</li>
                     </ul>
                 </div>
             </div>
+        </div>
 
+        <!-- Accompagnement Project Page -->
+        <div id="accompagnement-page" class="project-page">
+            <button class="back-button" onclick="showMain()">← Retour</button>
+            
             <div class="glass-card">
-                <h3 class="section-title">🔧 Étapes de Création</h3>
-                
-                <div class="implementation-step">
-                    <span class="step-number">1</span>
-                    <strong>Développement Initial & Version Control</strong>
-                    <p>Mise en place du repository GitHub avec structure modulaire et branching strategy</p>
-                    <div class="code-block">
-                        git init<br>
-                        git flow init<br>
-                        # Structure: main → develop → feature branches<br>
-                        # Conventional commits pour historique clair
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Gestion avancée de Git, workflow collaboratif, versioning sémantique
+                <div class="project-detail-header">
+                    <h2>💳 Système de Paiement - Accompagnement</h2>
+                    <p style="font-size: 1.2rem; color: rgba(26, 26, 46, 0.8);">
+                        Solution de paiement sécurisée pour les services d'accompagnement de Madame Y
                     </p>
                 </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">2</span>
-                    <strong>Configuration Infrastructure Hostinger VPS</strong>
-                    <p>Provisionnement et sécurisation du serveur Linux Ubuntu 22.04</p>
-                    <div class="code-block">
-                        # Configuration SSH sécurisée<br>
-                        ssh-keygen -t ed25519<br>
-                        # Firewall configuration<br>
-                        sudo ufw allow OpenSSH<br>
-                        sudo ufw allow 'Nginx Full'<br>
-                        sudo ufw enable
+                <div class="implementation-section">
+                    <h3>Infrastructure Sécurisée</h3>
+                    
+                    <div class="implementation-step">
+                        <span class="step-number">1</span>
+                        <strong>Containerisation avec Docker</strong>
+                        <p>Déploiement via <span class="highlight">Docker</span> pour isolation et reproductibilité</p>
+                        <div class="code-block">
+                            FROM node:18-alpine<br>
+                            RUN npm ci --only=production<br>
+                            EXPOSE 3000<br>
+                            CMD ["node", "server.js"]
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Administration système Linux, sécurité réseau, gestion VPS
-                    </p>
-                </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">3</span>
-                    <strong>Pipeline CI/CD Automatisé</strong>
-                    <p>Implémentation complète avec GitHub Actions pour tests et déploiement</p>
-                    <div class="code-block">
-                        name: CI/CD Pipeline<br>
-                        on:<br>
-                        &nbsp;&nbsp;push:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;branches: [main]<br>
-                        jobs:<br>
-                        &nbsp;&nbsp;test:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: actions/checkout@v3<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: npm test<br>
-                        &nbsp;&nbsp;deploy:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;needs: test<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Deploy to VPS<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses: appleboy/ssh-action@v0.1.5
+                    <div class="implementation-step">
+                        <span class="step-number">2</span>
+                        <strong>Intégration API de Paiement</strong>
+                        <p>Configuration sécurisée avec <span class="highlight">tokenisation PCI-DSS</span></p>
+                        <div class="code-block">
+                            const payment = await stripe.paymentIntents.create({<br>
+                            &nbsp;&nbsp;amount: amount * 100,<br>
+                            &nbsp;&nbsp;currency: 'eur',<br>
+                            &nbsp;&nbsp;metadata: { client_id, service_type }<br>
+                            })
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> CI/CD, GitHub Actions, automatisation des tests, deployment strategies
-                    </p>
-                </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">4</span>
-                    <strong>Orchestration avec PM2</strong>
-                    <p>Gestion avancée des processus Node.js avec monitoring et auto-restart</p>
-                    <div class="code-block">
-                        # Configuration ecosystem.config.js<br>
-                        module.exports = {<br>
-                        &nbsp;&nbsp;apps: [{<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;name: 'masterclass',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;instances: 'max',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;exec_mode: 'cluster',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;env: {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NODE_ENV: 'production'<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;error_file: './logs/err.log',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;out_file: './logs/out.log',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;log_date_format: 'YYYY-MM-DD HH:mm:ss'<br>
-                        &nbsp;&nbsp;}]<br>
-                        }
+                    <div class="implementation-step">
+                        <span class="step-number">3</span>
+                        <strong>Pipeline CI/CD Sécurisé</strong>
+                        <p>Tests automatisés et déploiement avec <span class="highlight">GitHub Actions</span></p>
+                        <div class="code-block">
+                            stages:<br>
+                            &nbsp;&nbsp;- Security Scan (SAST/DAST)<br>
+                            &nbsp;&nbsp;- Unit &amp; Integration Tests<br>
+                            &nbsp;&nbsp;- Docker Build &amp; Push<br>
+                            &nbsp;&nbsp;- Deploy to Production
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Process management, clustering, load balancing, monitoring production
-                    </p>
-                </div>
 
-                <div class="implementation-step">
-                    <span class="step-number">5</span>
-                    <strong>Configuration Nginx & Optimisation</strong>
-                    <p>Reverse proxy avec cache, compression et optimisations performances</p>
-                    <div class="code-block">
-                        server {<br>
-                        &nbsp;&nbsp;listen 443 ssl http2;<br>
-                        &nbsp;&nbsp;server_name masterclass.domain.com;<br>
-                        <br>
-                        &nbsp;&nbsp;# SSL Configuration<br>
-                        &nbsp;&nbsp;ssl_certificate /etc/letsencrypt/live/domain/fullchain.pem;<br>
-                        &nbsp;&nbsp;ssl_protocols TLSv1.2 TLSv1.3;<br>
-                        <br>
-                        &nbsp;&nbsp;# Performance optimizations<br>
-                        &nbsp;&nbsp;gzip on;<br>
-                        &nbsp;&nbsp;gzip_types text/css application/javascript;<br>
-                        <br>
-                        &nbsp;&nbsp;location / {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://localhost:3000;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;proxy_cache_valid 200 1d;<br>
-                        &nbsp;&nbsp;}<br>
-                        }
+                    <div class="implementation-step">
+                        <span class="step-number">4</span>
+                        <strong>Monitoring &amp; Observabilité</strong>
+                        <p>Mise en place de <span class="highlight">métriques MLOps</span> pour le suivi des transactions</p>
+                        <div class="code-block">
+                            // Prometheus metrics<br>
+                            payment_success_rate<br>
+                            payment_processing_time<br>
+                            fraud_detection_score
+                        </div>
                     </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Web server configuration, SSL/TLS, HTTP/2, caching strategies
-                    </p>
-                </div>
-
-                <div class="implementation-step">
-                    <span class="step-number">6</span>
-                    <strong>Monitoring & Observabilité</strong>
-                    <p>Mise en place de métriques et alerting pour surveillance proactive</p>
-                    <div class="code-block">
-                        # PM2 Monitoring<br>
-                        pm2 install pm2-logrotate<br>
-                        pm2 set pm2-logrotate:max_size 10M<br>
-                        <br>
-                        # Health checks endpoint<br>
-                        app.get('/health', (req, res) => {<br>
-                        &nbsp;&nbsp;res.json({<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;status: 'healthy',<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;uptime: process.uptime(),<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;memory: process.memoryUsage()<br>
-                        &nbsp;&nbsp;});<br>
-                        });
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <span class="highlight">Compétence acquise :</span> Monitoring, logging, alerting, troubleshooting production
-                    </p>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 class="section-title">🎯 Compétences DataOps/MLOps Acquises</h3>
-                <div class="skills-grid">
-                    <span class="skill-badge">Infrastructure as Code</span>
-                    <span class="skill-badge">CI/CD Pipelines</span>
-                    <span class="skill-badge">Monitoring & Logging</span>
-                    <span class="skill-badge">Load Balancing</span>
-                    <span class="skill-badge">Process Management</span>
-                    <span class="skill-badge">Security Best Practices</span>
-                    <span class="skill-badge">Performance Optimization</span>
-                    <span class="skill-badge">Automated Testing</span>
-                    <span class="skill-badge">Git Workflow</span>
-                    <span class="skill-badge">Linux Administration</span>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 class="section-title">📊 Résultats Obtenus</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-                    <div class="metric-card">
-                        <div class="icon">🚀</div>
-                        <strong>99.95%</strong><br>
-                        Uptime atteint
-                    </div>
-                    <div class="metric-card">
-                        <div class="icon">⚡</div>
-                        <strong>&lt; 100ms</strong><br>
-                        Temps de réponse
-                    </div>
-                    <div class="metric-card">
-                        <div class="icon">🔄</div>
-                        <strong>Zero-downtime</strong><br>
-                        Deployments
-                    </div>
-                    <div class="metric-card">
-                        <div class="icon">📈</div>
-                        <strong>10K+</strong><br>
-                        Utilisateurs simultanés
+</div></div></div></div></body></html>
