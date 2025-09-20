@@ -6,12 +6,26 @@
     <title>Projet Site d'Accompagnement | Bruno Chazeaud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-shape shape1"></div>
-    <div class="background-shape shape2"></div>
+    <div class="liquid-bg">
+        <div class="liquid-shape shape1"></div>
+        <div class="liquid-shape shape2"></div>
+        <div class="liquid-shape shape3"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="index.html#accueil" class="logo">Bruno Chazeaud</a>
+            <ul>
+                <li><a href="index.html#a-propos">À propos</a></li>
+                <li><a href="index.html#projets">Projets</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="container project-detail-page">
         <a href="index.html#projets" class="back-link">← Retour aux projets</a>
         <h1>Site d'accompagnement avec système de paiement</h1>
@@ -29,12 +43,15 @@
          <div class="glass-card">
             <h3>Lien avec l'offre d'emploi</h3>
             <p>Au-delà des aspects techniques, ce projet met en valeur des qualités humaines et conceptuelles cruciales :</p>
-            <ul class="competences-list">
+            <ul>
                 <li>✔️ <strong>Capacité d'abstraction :</strong> J'ai utilisé une API pour masquer un processus extrêmement complexe (le paiement bancaire) derrière une interface simple. C'est la même logique que l'on applique en créant des modèles d'IA : fournir une réponse simple à une question complexe.</li>
                 <li>✔️ <strong>Écoute et communication :</strong> Comprendre les craintes de la cliente et des utilisateurs finaux concernant la sécurité a été la clé du projet. J'ai su écouter le besoin et communiquer clairement sur la solution mise en place pour y répondre.</li>
                 <li>✔️ <strong>Contexte Banque et Assurance :</strong> La manipulation de données transactionnelles et la priorité donnée à la sécurité sont au cœur des métiers de la banque, démontrant ma compréhension de cet environnement.</li>
             </ul>
         </div>
     </main>
+     <footer class="container">
+        <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
