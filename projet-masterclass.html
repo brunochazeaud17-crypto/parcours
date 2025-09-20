@@ -6,12 +6,26 @@
     <title>Projet Masterclass | Bruno Chazeaud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-shape shape1"></div>
-    <div class="background-shape shape2"></div>
+    <div class="liquid-bg">
+        <div class="liquid-shape shape1"></div>
+        <div class="liquid-shape shape2"></div>
+        <div class="liquid-shape shape3"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="index.html#accueil" class="logo">Bruno Chazeaud</a>
+            <ul>
+                <li><a href="index.html#a-propos">À propos</a></li>
+                <li><a href="index.html#projets">Projets</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="container project-detail-page">
         <a href="index.html#projets" class="back-link">← Retour aux projets</a>
         <h1>Automatisation de Masterclass</h1>
@@ -35,7 +49,7 @@
          <div class="glass-card">
             <h3>Lien avec l'offre d'emploi</h3>
             <p>Cette expérience démontre ma maîtrise des outils et méthodologies fondamentales pour travailler au sein d'une équipe pluridisciplinaire (Data scientists, DevOps, etc.) :</p>
-            <ul class="competences-list">
+            <ul>
                 <li>✔️ <strong>Git, CI/CD, DataOps/MLOps, docker :</strong> J'ai mis en pratique toute la chaîne DevOps nécessaire à l'industrialisation d'un projet, de la gestion du code à la mise en production.</li>
                 <li>✔️ <strong>Environnement industriel bancaire :</strong> La rigueur appliquée (sécurité SSL, haute disponibilité) est directement transposable aux exigences d'une holding bancaire.</li>
                 <li>✔️ <strong>Capacité d'abstraction :</strong> J'ai conçu une infrastructure capable non seulement d'héberger ce site, mais aussi d'accueillir de futures <strong>solutions d'IA générative</strong>.</li>
@@ -43,5 +57,8 @@
         </div>
 
     </main>
+     <footer class="container">
+        <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
