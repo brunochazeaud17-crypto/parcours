@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Formulaire Zoom | Bruno Chazeaud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    <main class="container project-detail-page">
+        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+        <h1>Formulaire d'inscription Zoom</h1>
+
+        <div class="glass-card">
+            <h3>Le besoin : Automatiser la collecte de données</h3>
+            <p>La gestion manuelle des inscriptions était chronophage et source d'erreurs. L'objectif était de créer un pipeline de données entièrement automatisé pour capturer, structurer et exploiter les informations des nouveaux inscrits, un cas d'usage typique en préparation de données pour le Machine Learning.</p>
+        </div>
+
+        <div class="glass-card">
+            <h3>La solution technique : Un pipeline ETL "low-code"</h3>
+            <p>J'ai conçu un workflow d'automatisation (ETL : Extract, Transform, Load) avec l'outil n8n, démontrant une approche agile pour la résolution de problèmes data :</p>
+            <ul>
+                <li><strong>Extract :</strong> Un webhook capture en temps réel les données soumises depuis le formulaire du site web.</li>
+                <li><strong>Transform :</strong> Le workflow valide et formate les données pour garantir leur propreté et leur cohérence.</li>
+                <li><strong>Load :</strong> Les données structurées sont chargées via API dans une base de données (Airtable), créant une source de données fiable et prête à être analysée ou utilisée pour entraîner un modèle.</li>
+            </ul>
+        </div>
+
+         <div class="glass-card">
+            <h3>Lien avec l'offre d'emploi</h3>
+            <p>Ce projet illustre ma capacité à concevoir des flux de données efficaces, une compétence clé pour un Data Scientist :</p>
+            <ul class="competences-list">
+                <li>✔️ <strong>DataOps :</strong> J'ai mis en place un pipeline de données automatisé, de la source à la destination, illustrant les principes fondamentaux du DataOps.</li>
+                <li>✔️ <strong>Méthodologies Agiles :</strong> L'utilisation d'un outil "low-code" a permis de livrer rapidement une solution fonctionnelle, démontrant une approche itérative et agile.</li>
+                 <li>✔️ <strong>Maîtrise de l'environnement Python :</strong> Bien que n8n soit "low-code", il permet d'intégrer des scripts <strong>Python</strong> pour des transformations de données plus complexes, une compétence que je maîtrise pour des cas d'usage avancés.</li>
+                 <li>✔️ <strong>Équipe pluridisciplinaire :</strong> Ce pipeline est le pont entre les besoins métiers (marketing) et les équipes techniques (Data & AI Engineers), montrant ma capacité à collaborer efficacement.</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
