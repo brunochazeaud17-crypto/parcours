@@ -6,12 +6,26 @@
     <title>Projet Formulaire Zoom | Bruno Chazeaud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-shape shape1"></div>
-    <div class="background-shape shape2"></div>
+    <div class="liquid-bg">
+        <div class="liquid-shape shape1"></div>
+        <div class="liquid-shape shape2"></div>
+        <div class="liquid-shape shape3"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="index.html#accueil" class="logo">Bruno Chazeaud</a>
+            <ul>
+                <li><a href="index.html#a-propos">À propos</a></li>
+                <li><a href="index.html#projets">Projets</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main class="container project-detail-page">
         <a href="index.html#projets" class="back-link">← Retour aux projets</a>
         <h1>Formulaire d'inscription Zoom</h1>
@@ -34,7 +48,7 @@
          <div class="glass-card">
             <h3>Lien avec l'offre d'emploi</h3>
             <p>Ce projet illustre ma capacité à concevoir des flux de données efficaces, une compétence clé pour un Data Scientist :</p>
-            <ul class="competences-list">
+            <ul>
                 <li>✔️ <strong>DataOps :</strong> J'ai mis en place un pipeline de données automatisé, de la source à la destination, illustrant les principes fondamentaux du DataOps.</li>
                 <li>✔️ <strong>Méthodologies Agiles :</strong> L'utilisation d'un outil "low-code" a permis de livrer rapidement une solution fonctionnelle, démontrant une approche itérative et agile.</li>
                  <li>✔️ <strong>Maîtrise de l'environnement Python :</strong> Bien que n8n soit "low-code", il permet d'intégrer des scripts <strong>Python</strong> pour des transformations de données plus complexes, une compétence que je maîtrise pour des cas d'usage avancés.</li>
@@ -42,5 +56,8 @@
             </ul>
         </div>
     </main>
+     <footer class="container">
+        <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
