@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Masterclass | Bruno Chazeaud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    <main class="container project-detail-page">
+        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+        <h1>Automatisation de Masterclass</h1>
+        
+        <div class="glass-card">
+            <h3>Le besoin : Industrialiser une application web</h3>
+            <p>Le défi était de faire passer une application de son environnement de développement local à un serveur de production public. Cela impliquait de garantir sa disponibilité, sa performance et sa sécurité, simulant ainsi la mise en production d'une solution au sein d'un <strong>DataLab</strong> dans un contexte bancaire.</p>
+        </div>
+
+        <div class="glass-card">
+            <h3>La solution technique : une infrastructure MLOps-Ready</h3>
+            <p>J'ai mis en place une architecture robuste, prête à accueillir des applications data complexes comme des API de modèles de Machine Learning (développées en <strong>Python</strong>) :</p>
+            <ul>
+                <li><strong>Gestion de version (Git) :</strong> Utilisation de <strong>Git</strong> pour un versioning rigoureux du code, pilier de toute démarche <strong>CI/CD</strong>.</li>
+                <li><strong>Déploiement sur serveur (VPS) :</strong> Configuration d'un environnement Linux pour un contrôle total de l'infrastructure.</li>
+                <li><strong>Orchestration (Nginx & PM2) :</strong> Nginx sert de reverse proxy pour la sécurité et la performance, tandis que PM2 assure la haute disponibilité de l'application.</li>
+                <li><strong>Conteneurisation (Docker) :</strong> Ce projet a été pensé pour être conteneurisé avec <strong>Docker</strong>. Cette étape est cruciale pour garantir la reproductibilité des environnements, un prérequis indispensable en <strong>DataOps/MLOps</strong> pour s'assurer qu'un modèle se comporte de la même manière en production qu'en développement.</li>
+            </ul>
+        </div>
+
+         <div class="glass-card">
+            <h3>Lien avec l'offre d'emploi</h3>
+            <p>Cette expérience démontre ma maîtrise des outils et méthodologies fondamentales pour travailler au sein d'une équipe pluridisciplinaire (Data scientists, DevOps, etc.) :</p>
+            <ul class="competences-list">
+                <li>✔️ <strong>Git, CI/CD, DataOps/MLOps, docker :</strong> J'ai mis en pratique toute la chaîne DevOps nécessaire à l'industrialisation d'un projet, de la gestion du code à la mise en production.</li>
+                <li>✔️ <strong>Environnement industriel bancaire :</strong> La rigueur appliquée (sécurité SSL, haute disponibilité) est directement transposable aux exigences d'une holding bancaire.</li>
+                <li>✔️ <strong>Capacité d'abstraction :</strong> J'ai conçu une infrastructure capable non seulement d'héberger ce site, mais aussi d'accueillir de futures <strong>solutions d'IA générative</strong>.</li>
+            </ul>
+        </div>
+
+    </main>
+</body>
+</html>
