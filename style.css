@@ -1,121 +1,582 @@
-/* === Liquid Glass iOS 26 - Enhanced CSS ===
-:root{
-  --accent-1: #7c5cff; /* violet */
-  --accent-2: #25d5ff; /* cyan */
-  --glass-white: rgba(255,255,255,0.10);
-  --glass-white-2: rgba(255,255,255,0.06);
-  --glass-border: rgba(255,255,255,0.18);
-  --text: rgba(255,255,255,0.95);
-  --soft-shadow: 0 12px 40px rgba(6,10,15,0.48);
-}
-/* --- RESET & GLOBAL (réutilisé) --- */
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Poppins', -apple-system, 'SF Pro Text', system-ui, Helvetica, Arial, sans-serif;
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.08), transparent 12%),
-              radial-gradient(1000px 500px at 90% 80%, rgba(37,213,255,0.06), transparent 12%),
-              linear-gradient(160deg,#051627 0%, #122634 50%, #1b3550 100%);
-  color:var(--text);min-height:100vh;position:relative;padding:1.25rem;overflow-x:hidden
-}
-/* subtle grain overlay to mimic device glass */
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.04;
-  background-image:radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size:3px 3px;
+/* --- RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* smooth motion preference respect */
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-/* --- HEADER & NAV --- */
-header{position:fixed;top:0;left:0;width:100%;z-index:1100;padding:1rem 0;transition:all .36s cubic-bezier(.22,.9,.35,1)}
-header.scrolled{
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  backdrop-filter: blur(28px) saturate(220%);
-  -webkit-backdrop-filter: blur(28px) saturate(220%);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25)
+html {
+    scroll-behavior: smooth;
 }
-.logo{font-weight:800;font-size:1.9rem;letter-spacing:-0.02em;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;position:relative;padding:.5rem .9rem;border-radius:18px}
-.logo::after{content:'';position:absolute;inset:0;border-radius:18px;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,0.06),transparent 45%);mix-blend-mode:overlay}
 
-nav ul{list-style:none;display:flex;gap:1.25rem}
-nav a{color:rgba(255,255,255,0.88);text-decoration:none;font-weight:600;padding:.5rem .85rem;border-radius:999px;position:relative}
-nav a::before{content:'';position:absolute;inset:0;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.00));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .28s}
-nav a:hover::before{opacity:1}
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Fond dynamique avec dégradés colorés plus intenses */
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-attachment: fixed;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    padding: 1rem;
+}
 
-/* --- Liquid Glass component (more layered, spectral highlights) --- */
-.glass-card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-  border-radius:22px;position:relative;overflow:hidden;padding:2.25rem;border:1px solid var(--glass-border);
-  backdrop-filter: blur(30px) saturate(240%);
-  -webkit-backdrop-filter: blur(30px) saturate(240%);
-  box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.02);
-  transition: transform .45s cubic-bezier(.2,.9,.3,1), box-shadow .45s ease;
+/* Effet de texture liquide en arrière-plan */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(41, 128, 185, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(142, 68, 173, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(192, 57, 43, 0.3) 0%, transparent 25%);
+    z-index: -2;
+    pointer-events: none;
 }
-/* inner spectral rim */
-.glass-card::after{
-  content:'';position:absolute;inset:-2px;border-radius:24px;padding:2px;pointer-events:none;
-  background:linear-gradient(120deg, rgba(124,92,255,0.14), rgba(37,213,255,0.09));
-  mix-blend-mode:screen;filter:blur(10px);opacity:.6
-}
-.glass-card::before{
-  content:'';position:absolute;left:-25%;top:-40%;width:150%;height:200%;transform:rotate(24deg);
-  background:radial-gradient(40% 30% at 20% 20%, rgba(255,255,255,0.14), transparent 20%, transparent 100%);
-  opacity:.6;pointer-events:none;filter:blur(14px)
-}
-.glass-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 30px 80px rgba(6,10,15,0.6)}
 
-/* small sheen animation for interactive surfaces */
-@keyframes sheenMove{0%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
-.glass-card .sheen{position:absolute;left:-120%;top:0;height:100%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);transform:skewX(-18deg);opacity:0;pointer-events:none}
-.glass-card:hover .sheen{opacity:1;animation:sheenMove 1.2s ease}
+/* Animation de reflets subtils */
+@keyframes liquidMovement {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(5px, 5px) scale(1.02); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+/* --- HEADER & NAVIGATION --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #fff, #a3b1c6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    z-index: -1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+nav ul li a:hover::before {
+    opacity: 1;
+}
+
+/* --- EFFET LIQUID GLASS AMÉLIORÉ --- */
+.glass-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 10px 35px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    animation: liquidMovement 15s ease-in-out infinite;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: 0;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 
+        0 15px 45px 0 rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.glass-card:hover::before {
+    animation: shine 1.5s ease forwards;
+}
+
+@keyframes shine {
+    0% { transform: rotate(45deg) translate(-50%, -50%); }
+    100% { transform: rotate(45deg) translate(50%, 50%); }
+}
 
 /* --- HERO SECTION --- */
-#accueil{min-height:100vh;display:flex;align-items:center;gap:2.5rem;padding-top:4.25rem}
-.hero-content h1{font-size:3.4rem;font-weight:800;line-height:1.02;margin-bottom:.65rem;background:linear-gradient(90deg,#fff,#dbe9ff 40%,#fff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero-content h2{font-size:1.5rem;color:rgba(255,255,255,0.86);font-weight:500}
-.hero-pitch{font-size:1.12rem;max-width:62ch;color:rgba(255,255,255,0.88);line-height:1.7}
-
-/* --- HERO IMAGE: perfect circular, stronger rim, multi-layer glow + refraction mask --- */
-.hero-image{
-  width:360px;height:360px;border-radius:9999px;overflow:hidden;position:relative;display:block;flex:0 0 auto;
-  -webkit-mask-image:radial-gradient(circle at 50% 50%, black 100%, transparent 100%);
-  mask-image:radial-gradient(circle at 50% 50%, black 100%, transparent 100%);
-  border:3px solid rgba(255,255,255,0.12);
-  box-shadow: 0 20px 60px rgba(6,10,15,0.6), inset 0 6px 18px rgba(255,255,255,0.03);
-  transition:transform .45s cubic-bezier(.2,.9,.3,1), box-shadow .45s ease;
+#accueil {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding-top: 4rem;
 }
-/* outer halo */
-.hero-image::after{
-  content:'';position:absolute;inset:-14px;border-radius:9999px;z-index:-1;background:conic-gradient(from 120deg, rgba(124,92,255,0.12), rgba(37,213,255,0.09), rgba(124,92,255,0.08));filter:blur(22px);opacity:.9}
-/* glossy highlight rim */
-.hero-image::before{
-  content:'';position:absolute;left:6%;top:6%;width:38%;height:26%;border-radius:9999px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.05));transform:rotate(-12deg);mix-blend-mode:overlay;pointer-events:none;filter:blur(6px)}
 
-.hero-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-.hero-image:hover{transform:translateY(-6px) scale(1.035);box-shadow:0 30px 80px rgba(6,10,15,0.66)}
-.hero-image:hover img{transform:scale(1.06)}
+.hero-content h1 { 
+    font-size: 3.5rem; 
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #a3b1c6, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
 
-/* force perfect circle on smaller screens */
-@media (max-width:768px){.hero-image{width:300px;height:300px}}
+.hero-content h2 { 
+    font-size: 1.6rem; 
+    font-weight: 400; 
+    color: rgba(255, 255, 255, 0.8); 
+    margin: 0.5rem 0 1.5rem; 
+}
 
-/* --- Buttons --- */
-.cta-button{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.9rem;border-radius:999px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(180deg,rgba(255,255,255,0.04),transparent);backdrop-filter:blur(8px) saturate(160%);-webkit-backdrop-filter:blur(8px) saturate(160%);font-weight:700;transition:all .36s cubic-bezier(.22,.9,.35,1)}
-.cta-button.primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#fff;border:none;box-shadow:0 10px 30px rgba(124,92,255,0.18)}
-.cta-button::before{content:'';position:absolute;inset:0;border-radius:999px;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);transform:translateX(-100%)}
-.cta-button:hover::before{animation:buttonShine .95s ease forwards}
-@keyframes buttonShine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.hero-pitch { 
+    font-size: 1.2rem; 
+    max-width: 600px; 
+    margin-bottom: 2.5rem; 
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+}
 
-/* --- Projects & cards reuse the glass style --- */
-.project-link-card{background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015));border-radius:20px;padding:2rem;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(26px) saturate(190%);box-shadow:0 16px 48px rgba(4,8,12,0.45)}
-.project-link-card::before{height:6px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
+.hero-buttons { 
+    display: flex; 
+    gap: 1.5rem; 
+}
 
-/* --- Footer --- */
-footer{padding:3rem 2rem;margin-top:5.5rem;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(22px);border-top:1px solid rgba(255,255,255,0.04);border-radius:20px 20px 0 0}
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
 
-/* --- Accessibility tweaks --- */
-a,button{outline-offset:4px}
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+}
 
-/* --- End of Liquid Glass iOS26 CSS --- */
+.cta-button:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover::before {
+    animation: buttonShine 1s ease;
+}
+
+@keyframes buttonShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-image {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.hero-image:hover {
+    transform: scale(1.03);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.25),
+        inset 0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #fc466b, #3f5efb, #fc466b);
+    background-size: 400% 400%;
+    border-radius: 50%;
+    z-index: -1;
+    animation: gradientShift 15s ease infinite;
+    opacity: 0.7;
+    filter: blur(15px);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-image img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+
+/* --- SECTIONS --- */
+section {
+    padding: 8rem 0;
+}
+
+section h2, .project-detail-page h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #fff, #a3b1c6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 3.5rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 1.5rem;
+}
+
+section h2::after, .project-detail-page h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+
+/* --- ABOUT CARD --- */
+.about-card ul { 
+    list-style: none; 
+    margin-top: 2rem; 
+}
+
+.about-card ul li { 
+    padding-left: 2rem; 
+    position: relative; 
+    margin-bottom: 1rem; 
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.about-card ul li::before { 
+    content: '✓'; 
+    position: absolute; 
+    left: 0; 
+    color: #fff; 
+    font-weight: bold;
+    background: linear-gradient(45deg, #fc466b, #3f5efb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- PROJECTS GRID (Index Page) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.project-link-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 
+        0 10px 35px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #fc466b, #3f5efb);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.project-link-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 45px 0 rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.project-link-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-link-card h4 {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.project-link-card p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* --- PROJECT DETAIL PAGES --- */
+.project-detail-page {
+    padding-top: 120px;
+}
+
+.project-detail-page .glass-card { 
+    margin-bottom: 2.5rem; 
+}
+
+.project-detail-page h3 { 
+    margin-bottom: 1.2rem; 
+    color: #fff; 
+    font-size: 1.8rem; 
+    font-weight: 600;
+}
+
+.project-detail-page .competences-list li { 
+    margin-bottom: 0.8rem; 
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(-5px);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 6rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px 24px 0 0;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    #accueil { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        min-height: auto; 
+        padding: 120px 0 4rem 0; 
+        gap: 2.5rem;
+    }
+    
+    .hero-buttons { 
+        justify-content: center; 
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul { 
+        display: none; 
+    }
+    
+    .hero-content h1 { 
+        font-size: 2.5rem; 
+    }
+    
+    .hero-content h2 { 
+        font-size: 1.3rem; 
+    }
+    
+    .hero-image {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .glass-card, .project-link-card {
+        padding: 2rem;
+    }
+    
+    section h2, .project-detail-page h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Effet de refraction sur les textes */
+.refraction-text {
+    position: relative;
+    display: inline-block;
+}
+
+.refraction-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.1));
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+    opacity: 0.7;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
