@@ -28,34 +28,34 @@
 
     <main class="container project-detail-page">
         <a href="index.html#projets" class="back-link">← Retour aux projets</a>
-        <h1>Formulaire d'inscription Zoom</h1>
-
+        <h1>Automatisation d'une Inscription Zoom</h1>
+    
         <div class="glass-card">
-            <h3>Le besoin : Automatiser la collecte de données</h3>
-            <p>La gestion manuelle des inscriptions était chronophage et source d'erreurs. L'objectif était de créer un pipeline de données entièrement automatisé pour capturer, structurer et exploiter les informations des nouveaux inscrits, un cas d'usage typique en préparation de données pour le Machine Learning.</p>
+            <h3>Le Défi</h3>
+            <p>Supprimer toute intervention manuelle dans le processus d'inscription à un événement Zoom. L'objectif était de capturer les informations des utilisateurs de manière fiable et de déclencher des actions automatiques.</p>
         </div>
-
+    
         <div class="glass-card">
-            <h3>La solution technique : Un pipeline ETL "low-code"</h3>
-            <p>J'ai conçu un workflow d'automatisation (ETL : Extract, Transform, Load) avec l'outil n8n, démontrant une approche agile pour la résolution de problèmes data :</p>
+            <h3>Ma Solution Technique</h3>
+            <p>J'ai mis en place un <strong>pipeline de données (ETL)</strong> simple et efficace avec l'outil d'automatisation n8n :</p>
             <ul>
-                <li><strong>Extract :</strong> Un webhook capture en temps réel les données soumises depuis le formulaire du site web.</li>
-                <li><strong>Transform :</strong> Le workflow valide et formate les données pour garantir leur propreté et leur cohérence.</li>
-                <li><strong>Load :</strong> Les données structurées sont chargées via API dans une base de données (Airtable), créant une source de données fiable et prête à être analysée ou utilisée pour entraîner un modèle.</li>
+                <li><strong>Extract :</strong> Un formulaire web sur le site de la cliente capture les données d'inscription.</li>
+                <li><strong>Transform :</strong> Un workflow n8n reçoit ces données, les valide et les met en forme.</li>
+                <li><strong>Load :</strong> Le workflow charge les données propres dans une base <strong>Airtable</strong> et déclenche l'envoi d'un email de confirmation.</li>
             </ul>
         </div>
-
+    
          <div class="glass-card">
-            <h3>Lien avec l'offre d'emploi</h3>
-            <p>Ce projet illustre ma capacité à concevoir des flux de données efficaces, une compétence clé pour un Data Scientist :</p>
+            <h3>Lien avec le poste de Data Scientist</h3>
+            <p>Ce projet est un cas pratique de <strong>Data Engineering</strong>, une compétence centrale pour tout Data Scientist.</p>
             <ul>
-                <li>✔️ <strong>DataOps :</strong> J'ai mis en place un pipeline de données automatisé, de la source à la destination, illustrant les principes fondamentaux du DataOps.</li>
-                <li>✔️ <strong>Méthodologies Agiles :</strong> L'utilisation d'un outil "low-code" a permis de livrer rapidement une solution fonctionnelle, démontrant une approche itérative et agile.</li>
-                 <li>✔️ <strong>Maîtrise de l'environnement Python :</strong> Bien que n8n soit "low-code", il permet d'intégrer des scripts <strong>Python</strong> pour des transformations de données plus complexes, une compétence que je maîtrise pour des cas d'usage avancés.</li>
-                 <li>✔️ <strong>Équipe pluridisciplinaire :</strong> Ce pipeline est le pont entre les besoins métiers (marketing) et les équipes techniques (Data & AI Engineers), montrant ma capacité à collaborer efficacement.</li>
+                <li>✅ Il démontre ma capacité à construire des <strong>pipelines de données</strong> pour collecter et structurer l'information, la rendant prête pour l'analyse.</li>
+                <li>✅ L'utilisation d'outils comme n8n montre une <strong>approche Agile</strong>, permettant de livrer rapidement de la valeur.</li>
+                <li>✅ La logique de ce flux est transposable à l'alimentation de modèles d'IA, qui nécessitent des données propres et structurées en entrée.</li>
             </ul>
         </div>
     </main>
+
      <footer class="container">
         <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
     </footer>
