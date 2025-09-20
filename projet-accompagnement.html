@@ -28,28 +28,34 @@
 
     <main class="container project-detail-page">
         <a href="index.html#projets" class="back-link">← Retour aux projets</a>
-        <h1>Site d'accompagnement avec système de paiement</h1>
-
+        <h1>Création d'un site d'accompagnement avec paiement</h1>
+    
         <div class="glass-card">
-            <h3>Le besoin : Sécuriser et simplifier une transaction</h3>
-            <p>Il était nécessaire d'intégrer une solution de paiement en ligne qui soit à la fois totalement sécurisée pour l'utilisateur final et simple à mettre en œuvre. Ce projet met en lumière la gestion des contraintes du monde réel, un aspect essentiel dans le secteur bancaire et de l'assurance.</p>
+            <h3>Le Défi</h3>
+            <p>Créer un site web permettant aux clientes de souscrire à des offres d'accompagnement en intégrant une solution de paiement en ligne totalement sécurisée, simple d'utilisation et fiable.</p>
         </div>
-
+    
         <div class="glass-card">
-            <h3>La solution technique : Intégration d'API et architecture événementielle</h3>
-            <p>J'ai intégré une API de paiement sécurisée (de type Stripe) qui externalise la complexité et la gestion des données sensibles. Chaque transaction réussie génère un événement (webhook), créant un flux de données transactionnelles en temps réel qui peut être utilisé pour alimenter des dashboards ou des modèles d'analyse de revenus.</p>
-        </div>
-
-         <div class="glass-card">
-            <h3>Lien avec l'offre d'emploi</h3>
-            <p>Au-delà des aspects techniques, ce projet met en valeur des qualités humaines et conceptuelles cruciales :</p>
+            <h3>Ma Solution Technique</h3>
+            <p>J'ai développé une application web avec un backend dédié à la gestion des paiements :</p>
             <ul>
-                <li>✔️ <strong>Capacité d'abstraction :</strong> J'ai utilisé une API pour masquer un processus extrêmement complexe (le paiement bancaire) derrière une interface simple. C'est la même logique que l'on applique en créant des modèles d'IA : fournir une réponse simple à une question complexe.</li>
-                <li>✔️ <strong>Écoute et communication :</strong> Comprendre les craintes de la cliente et des utilisateurs finaux concernant la sécurité a été la clé du projet. J'ai su écouter le besoin et communiquer clairement sur la solution mise en place pour y répondre.</li>
-                <li>✔️ <strong>Contexte Banque et Assurance :</strong> La manipulation de données transactionnelles et la priorité donnée à la sécurité sont au cœur des métiers de la banque, démontrant ma compréhension de cet environnement.</li>
+                <li><strong>Backend en Node.js</strong> pour communiquer de manière sécurisée avec des services externes.</li>
+                <li><strong>Intégration de l'API Stripe</strong>, une référence mondiale pour le paiement en ligne.</li>
+                <li><strong>Architecture sécurisée</strong> où les données de carte bancaire ne transitent jamais par mon serveur, mais sont gérées directement par Stripe.</li>
+            </ul>
+        </div>
+    
+         <div class="glass-card">
+            <h3>Lien avec le poste de Data Scientist</h3>
+            <p>Ce projet met en avant des compétences techniques et conceptuelles clés.</p>
+            <ul>
+                <li>✅ La création d'un backend et l'intégration d'API sont des compétences directement transposables à l'environnement <strong>Python</strong> avec des frameworks comme <strong>Flask</strong> ou <strong>FastAPI</strong> pour créer des API de Machine Learning.</li>
+                <li>✅ Il prouve ma capacité à manipuler des <strong>flux de données sensibles (transactionnelles)</strong>, un enjeu majeur dans le <strong>secteur bancaire</strong>.</li>
+                <li>✅ La maîtrise de <strong>Git</strong> a été essentielle pour gérer à la fois le code du front-end et du back-end.</li>
             </ul>
         </div>
     </main>
+    
      <footer class="container">
         <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
     </footer>
