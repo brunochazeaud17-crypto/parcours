@@ -114,6 +114,8 @@ section h2 { text-align: center; font-size: 2.5rem; color: #f093fb; text-shadow:
 .project-detail-page h1 { font-size: 2.8rem; text-align: center; color: #f093fb; text-shadow: 0 0 25px rgba(240, 147, 251, 0.5); margin-bottom: 2rem; }
 .back-link { display: inline-block; padding: 10px 20px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; text-decoration: none; color: #f093fb; margin-bottom: 30px; transition: all 0.3s ease; }
 .back-link:hover { background: rgba(255, 255, 255, 0.2); transform: translateX(-5px); }
+.github-button { display: inline-block; margin-top: 1.5rem; padding: 10px 25px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px; text-decoration: none; color: #f093fb; font-weight: 500; transition: all 0.3s ease; }
+.github-button:hover { background: rgba(240, 147, 251, 0.2); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
 
 /* --- FOOTER --- */
 footer { text-align: center; margin-top: 4rem; padding: 2rem 0; color: #ccc; border-top: 1px solid rgba(255, 255, 255, 0.1); }
@@ -128,22 +130,22 @@ footer { text-align: center; margin-top: 4rem; padding: 2rem 0; color: #ccc; bor
     nav ul { display: none; }
 }
 
-/* --- NOUVEAU STYLE POUR LE BOUTON GITHUB --- */
-.github-button {
-    display: inline-block;
+/* --- NOUVELLE SECTION CONTACT --- */
+#contact {
+    text-align: center;
+    padding-top: 2rem;
+}
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
     margin-top: 1.5rem;
-    padding: 10px 25px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    text-decoration: none;
-    color: #f093fb;
-    font-weight: 500;
+}
+.contact-links a {
+    color: #f0f0f0;
     transition: all 0.3s ease;
 }
-
-.github-button:hover {
-    background: rgba(240, 147, 251, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.contact-links a:hover {
+    color: #f093fb;
+    transform: scale(1.15) translateY(-5px);
 }
