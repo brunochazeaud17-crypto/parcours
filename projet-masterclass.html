@@ -3,63 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Masterclass | Bruno Chazeaud</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Bâtir l'Infrastructure | Bruno Chazeaud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="liquid-bg">
-        <div class="liquid-shape shape1"></div>
-        <div class="liquid-shape shape2"></div>
-        <div class="liquid-shape shape3"></div>
-    </div>
-
+<body class="project-page">
     <header>
         <nav class="container">
-            <a href="index.html#accueil" class="logo">Bruno Chazeaud</a>
-            <ul>
-                <li><a href="index.html#a-propos">À propos</a></li>
-                <li><a href="index.html#projets">Projets</a></li>
-            </ul>
+            <a href="index.html" class="logo">B.C</a>
         </nav>
     </header>
 
-    <main class="container project-detail-page">
-        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
-        <h1>Mise en place d'un site de Masterclass</h1>
-        
-        <div class="glass-card">
-            <h3>Le Défi</h3>
-            <p>Permettre aux clientes de Madame Y de s'inscrire en ligne à une masterclass, de choisir un créneau horaire et de recevoir des emails de rappel automatisés pour ne pas manquer l'événement.</p>
+    <main class="container">
+        <div class="project-header">
+            <a href="index.html#creations" class="back-link">← Retour aux créations</a>
+            <h1>L'Architecture de l'Apprentissage</h1>
+            <p class="subtitle">Déploiement et gestion d'une plateforme Masterclass</p>
         </div>
-    
-        <div class="glass-card">
-            <h3>Ma Solution Technique</h3>
-            <p>J'ai déployé un site web sur une infrastructure que j'ai personnellement configurée pour garantir performance et stabilité :</p>
-            <ul>
-                <li><strong>Déploiement sur serveur privé (VPS)</strong> pour un contrôle total de l'environnement.</li>
-                <li><strong>Gestion de version avec Git</strong> pour un suivi rigoureux du code.</li>
-                <li><strong>Configuration de Nginx</strong> comme reverse proxy pour la sécurité et la gestion du trafic.</li>
-                <li><strong>Utilisation de PM2</strong> pour assurer que l'application reste en ligne en continu.</li>
-            </ul>
-            <a href="https://github.com/brunochazeaud17-crypto/masterclass_site" class="github-button" target="_blank">Voir le code sur GitHub</a>
-        </div>
-    
-         <div class="glass-card">
-            <h3>Lien avec un Data Scientist</h3>
-            <p>Cette expérience démontre des compétences fondamentales en <strong>DataOps/MLOps</strong> :</p>
-            <ul>
-                <li>✅ La mise en place de cette infrastructure est la base requise pour <strong>déployer des applications data</strong> ou des API de modèles de Machine Learning.</li>
-                <li>✅ La méthode de déploiement illustre ma maîtrise des outils de la <strong>chaîne CI/CD (Git, serveur Linux)</strong>, essentiels pour l'industrialisation des projets d'IA.</li>
-                <li>✅ La gestion des créneaux et des rappels est une problématique de <strong>gestion de données temporelles</strong>.</li>
-            </ul>
-        </div>
+
+        <section class="project-content">
+            <div class="glass-box">
+                <h3>L'Objectif</h3>
+                <p>Permettre une inscription fluide et une gestion automatique des rappels pour des événements en ligne, afin que l'organisatrice puisse se concentrer uniquement sur son contenu pédagogique.</p>
+            </div>
+
+            <div class="glass-box">
+                <h3>Mon Apprentissage en Autodidacte</h3>
+                <p>J'ai choisi de ne pas utiliser de solutions "clés en main" pour comprendre la tuyauterie de l'Internet :</p>
+                <ul>
+                    <li>Configuration d'un <strong>serveur Linux (VPS)</strong>.</li>
+                    <li>Utilisation de <strong>Nginx</strong> et <strong>PM2</strong> pour la stabilité.</li>
+                    <li>Gestion rigoureuse des versions via <strong>Git</strong>.</li>
+                </ul>
+                <a href="https://github.com/brunochazeaud17-crypto/masterclass_site" class="btn-primary" target="_blank">Voir les coulisses</a>
+            </div>
+
+            <div class="glass-box highlight">
+                <h3>Ma Pro-activité</h3>
+                <p>Ce projet prouve que je ne recule devant aucun obstacle technique. Si une solution nécessite d'apprendre l'administration système, je le fais. C'est cette **autonomie** que je mets au service de mes futurs collaborateurs.</p>
+            </div>
+        </section>
     </main>
 
-     <footer class="container">
-        <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
+    <footer>
+        <p>&copy; 2026 Bruno Chazeaud</p>
     </footer>
 </body>
 </html>
