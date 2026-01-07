@@ -3,62 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Site d'Accompagnement | Bruno Chazeaud</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Sécuriser la Confiance | Bruno Chazeaud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="liquid-bg">
-        <div class="liquid-shape shape1"></div>
-        <div class="liquid-shape shape2"></div>
-        <div class="liquid-shape shape3"></div>
-    </div>
-
+<body class="project-page">
     <header>
         <nav class="container">
-            <a href="index.html#accueil" class="logo">Bruno Chazeaud</a>
+            <a href="index.html" class="logo">B.C</a>
             <ul>
-                <li><a href="index.html#a-propos">À propos</a></li>
-                <li><a href="index.html#projets">Projets</a></li>
+                <li><a href="index.html#parcours">Mon Odyssée</a></li>
+                <li><a href="index.html#creations">Créations</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container project-detail-page">
-        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
-        <h1>Création d'un site d'accompagnement avec paiement</h1>
-    
-        <div class="glass-card">
-            <h3>Le Défi</h3>
-            <p>Créer un site web permettant aux clientes de souscrire à des offres d'accompagnement en intégrant une solution de paiement en ligne totalement sécurisée, simple d'utilisation et fiable.</p>
+    <main class="container">
+        <div class="project-header">
+            <a href="index.html#creations" class="back-link">← Retour aux créations</a>
+            <h1>Sécuriser la Confiance : Système de Paiement</h1>
+            <p class="subtitle">Accompagner l'entrepreneuriat par la technologie</p>
         </div>
-    
-        <div class="glass-card">
-            <h3>Ma Solution Technique</h3>
-            <p>J'ai développé une application web avec un backend dédié à la gestion des paiements :</p>
-            <ul>
-                <li><strong>Backend en Node.js</strong> pour communiquer de manière sécurisée avec des services externes.</li>
-                <li><strong>Intégration de l'API Stripe</strong>, une référence mondiale pour le paiement en ligne.</li>
-                <li><strong>Architecture sécurisée</strong> où les données de carte bancaire ne transitent jamais par mon serveur, mais sont gérées directement par Stripe.</li>
-            </ul>
-            <a href="https://github.com/brunochazeaud17-crypto/accompagnement" class="github-button" target="_blank">Voir le code sur GitHub</a>
-        </div>
-    
-         <div class="glass-card">
-            <h3>Lien avec un Data Scientist</h3>
-            <p>Ce projet met en avant des compétences techniques et conceptuelles clés.</p>
-            <ul>
-                <li>✅ La création d'un backend et l'intégration d'API sont des compétences directement transposables à l'environnement <strong>Python</strong> avec des frameworks comme <strong>Flask</strong> ou <strong>FastAPI</strong> pour créer des API de Machine Learning.</li>
-                <li>✅ Il prouve ma capacité à manipuler des <strong>flux de données sensibles (transactionnelles)</strong>, un enjeu majeur dans le <strong>secteur bancaire</strong>.</li>
-                <li>✅ La maîtrise de <strong>Git</strong> a été essentielle pour gérer à la fois le code du front-end et du back-end.</li>
-            </ul>
-        </div>
+
+        <section class="project-content">
+            <div class="glass-box">
+                <h3>Le Défi Humain</h3>
+                <p>Une entrepreneure souhaitait digitaliser son offre d'accompagnement. Le défi n'était pas seulement technique, il s'agissait de créer un environnement de confiance où les clientes pourraient s'engager sereinement.</p>
+            </div>
+
+            <div class="glass-box">
+                <h3>Le Voyage Technique</h3>
+                <p>Pour répondre à ce besoin, je me suis plongé dans l'écosystème du paiement sécurisé :</p>
+                <ul>
+                    <li>Architecture <strong>Node.js</strong> pour une communication fluide.</li>
+                    <li>Maîtrise de l'<strong>API Stripe</strong>, référence du secteur.</li>
+                    <li>Mise en place d'une sécurité stricte : aucune donnée sensible ne touche mon serveur.</li>
+                </ul>
+                <a href="https://github.com/brunochazeaud17-crypto/accompagnement" class="btn-primary" target="_blank">Explorer le code</a>
+            </div>
+
+            <div class="glass-box highlight">
+                <h3>Ce que j'en retire</h3>
+                <p>Ce projet m'a appris l'importance de la <strong>responsabilité technologique</strong>. Gérer des transactions, c'est gérer la confiance d'autrui. Cela a renforcé ma rigueur et ma capacité à livrer un produit fini prêt à l'emploi.</p>
+            </div>
+        </section>
     </main>
-    
-     <footer class="container">
-        <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
+
+    <footer>
+        <p>&copy; 2026 Bruno Chazeaud</p>
     </footer>
 </body>
 </html>
