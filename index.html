@@ -3,104 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno Chazeaud | Data & IA</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Bruno Chazeaud | Explorateur de Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="liquid-bg">
-        <div class="liquid-shape shape1"></div>
-        <div class="liquid-shape shape2"></div>
-        <div class="liquid-shape shape3"></div>
-    </div>
 
     <header>
         <nav class="container">
-            <a href="index.html#accueil" class="logo">Bruno Chazeaud</a>
+            <a href="#" class="logo">B.C</a>
             <ul>
-                <li><a href="index.html#a-propos">À propos</a></li>
-                <li><a href="index.html#projets">Projets</a></li>
+                <li><a href="#parcours">Mon Odyssée</a></li>
+                <li><a href="#creations">Créations</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="accueil" class="container">
+        <!-- HERO SECTION : On définit l'homme, pas l'outil -->
+        <section id="hero" class="container">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1>DATA SCIENCE & IA</h1>
-                    <h2>De la modélisation des risques financiers à la Science des Données</h2>
-                </div>
-                <p class="hero-pitch">Passionné par la valorisation de la donnée, je conçois et déploie des pipelines de données automatisés et des applications intelligentes pour le domaine de la Data et de l'IA.</p>
-                <div class="hero-buttons">
-                    <a href="#projets" class="cta-button">Explorer mes projets</a>
-                    <a href="#contact" class="cta-button secondary">Me contacter</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="IMG_3989.jpg" alt="Photo de Bruno Chazeaud">
-            </div>
-        </section>
-
-        <section id="a-propos" class="container">
-             <div class="glass-card">
-                 <h3>Mon parcours : de l'analyse quantitative à la Data Science</h3>
-                 <p>Ma formation en <strong>Ingénierie des Risques Économiques et Financiers</strong> m'a doté de solides compétences en analyse quantitative et en modélisation. Cette approche rigoureuse est le socle sur lequel je construis aujourd'hui mes projets en <strong>Data Science</strong>.</p>
-                 <ul>
-                     <li><strong>Master 2</strong> - Ingénierie des Risques Économiques et Financiers</li>
-                     <li><strong>Licence</strong> - Économie Gestion</li>
-                     <li><strong>Baccalauréat S</strong></li>
-                 </ul>
-             </div>
-        </section>
-
-        <section id="experience-client" class="container">
-            <div class="glass-card">
-                <h3>De la Théorie à la Pratique</h3>
-                <p>
-                    Désireux de développer concrètement mes compétences en programmation et gestion de données, j'ai collaboré avec Madame Y sur son projet de plateforme digitale d'accompagnement pour les femmes enceintes. Les réalisations présentées ci-dessous sont le fruit de ce projet.
+                <span class="eyebrow">Ingénieur de formation | Créateur par passion</span>
+                <h1>Construire des ponts entre les idées et la réalité.</h1>
+                <p class="intro-text">
+                    Mon parcours a commencé sous le soleil d'Abidjan pour me mener aux frontières de l'IA et de la Finance. 
+                    Je ne me contente pas de coder ; je résous des problèmes, qu'ils soient humains, financiers ou techniques.
                 </p>
+                <div class="hero-cta">
+                    <a href="#creations" class="btn-primary">Découvrir mes projets</a>
+                    <a href="#parcours" class="btn-secondary">Mon parcours</a>
+                </div>
             </div>
         </section>
 
-        <section id="projets" class="container">
-            <h2>Mes Projets</h2>
+        <!-- SECTION PARCOURS : La narration -->
+        <section id="parcours" class="container">
+            <h2 class="section-title">Mon Odyssée</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">Abidjan, Côte d'Ivoire</div>
+                    <h3>Les Racines : Bac S (Physique-Chimie)</h3>
+                    <p>C'est ici que tout commence. Une curiosité scientifique insatiable et le désir de comprendre les mécanismes du monde.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Licence & Master 1</div>
+                    <h3>L'Analyse : Économie & Gestion</h3>
+                    <p>Apprendre à lire entre les chiffres. Comprendre les flux, les marchés et les comportements humains derrière l'économie.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Master 2</div>
+                    <h3>La Rigueur : Ingénierie des Risques</h3>
+                    <p>Spécialisation dans la modélisation financière. Apprendre à prévoir l'imprévisible et à structurer des données complexes.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Aujourd'hui</div>
+                    <h3>L'Expansion : Data, IA & Développement Mobile</h3>
+                    <p>Fusionner la rigueur de la finance avec la puissance créative de la technologie pour créer des outils à fort impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION PROJETS : Diversité et Pro-activité -->
+        <section id="creations" class="container">
+            <h2 class="section-title">Mes Créations</h2>
+            
+            <!-- Projet Phare : Le Grimoire -->
+            <div class="featured-project">
+                <div class="project-info">
+                    <span class="tag">Application Mobile & IA</span>
+                    <h3>Le Grimoire Parental</h3>
+                    <p>Une application Flutter innovante utilisant l'IA (Gemini) pour accompagner les parents dans la PNL de la petite enfance. Un univers fantasy au service de l'éducation.</p>
+                    <ul class="tech-list">
+                        <li>Flutter</li>
+                        <li>IA (Gemini Flash)</li>
+                        <li>Architecture Propre</li>
+                    </ul>
+                </div>
+                <div class="project-visual magic-card">
+                    <span>✨</span>
+                </div>
+            </div>
+
             <div class="projects-grid">
-                <a href="projet-masterclass.html" class="project-link-card">
-                    <span class="emoji">🚀</span>
-                    <div class="title">Automatisation de Masterclass</div>
-                    <div class="subtitle">Infrastructure & Déploiement</div>
-                </a>
-                <a href="projet-zoom.html" class="project-link-card">
-                    <span class="emoji">🔗</span>
-                     <div class="title">Formulaire d'inscription Zoom</div>
-                     <div class="subtitle">Pipeline de Données ETL</div>
-                </a>
-                <a href="projet-accompagnement.html" class="project-link-card">
+                <!-- Projets Amis -->
+                <div class="project-card">
+                    <span class="emoji">🍰</span>
+                    <h4>Le Site du Pâtissier</h4>
+                    <p>Accompagnement d'un artisan dans sa transition numérique pour mettre en valeur son savoir-faire.</p>
+                </div>
+                <div class="project-card">
+                    <span class="emoji">🎤</span>
+                    <h4>Journalisme Citoyen</h4>
+                    <p>Création d'une plateforme d'expression pour une journaliste en Côte d'Ivoire.</p>
+                </div>
+                <!-- Projets Techniques -->
+                <div class="project-card">
+                    <span class="emoji">🤖</span>
+                    <h4>Automatisation Masterclass</h4>
+                    <p>Optimisation de la gestion client via des serveurs privés et des pipelines automatisés.</p>
+                </div>
+                <div class="project-card">
                     <span class="emoji">💳</span>
-                    <div class="title">Site d'accompagnement</div>
-                    <div class="subtitle">Intégration & Paiement Sécurisé</div>
-                </a>
+                    <h4>Système de Paiement</h4>
+                    <p>Intégration sécurisée de flux financiers transactionnels via Stripe.</p>
+                </div>
             </div>
         </section>
 
+        <!-- CONTACT -->
         <section id="contact" class="container">
-            <h2>Me contacter</h2>
-            <div class="contact-links">
-                <a href="https://www.linkedin.com/in/bruno-chazeaud-ba390a178/" target="_blank" rel="noopener noreferrer" aria-label="Mon profil LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.1 1.16 3.1 3.36z"></path></svg>
-                </a>
-                <a href="mailto:brunochazeaud17@gmail.com" aria-label="M'envoyer un email">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="40px" height="40px"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-                </a>
+            <div class="glass-box">
+                <h2>Envie de collaborer ?</h2>
+                <p>Je suis à la recherche d'une opportunité où ma polyvalence et ma soif d'apprendre feront la différence.</p>
+                <div class="contact-btns">
+                    <a href="mailto:brunochazeaud17@gmail.com" class="btn-primary">M'envoyer un message</a>
+                    <a href="https://www.linkedin.com/in/bruno-chazeaud-ba390a178/" target="_blank" class="btn-secondary">LinkedIn</a>
+                </div>
             </div>
         </section>
-        </main>
+    </main>
 
-    <footer class="container">
-        <p>&copy; 2025 Bruno Chazeaud. Tous droits réservés.</p>
+    <footer>
+        <p>&copy; 2026 Bruno Chazeaud. De la finance à la création numérique.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
