@@ -28,31 +28,66 @@ nav ul { display: flex; list-style: none; gap: 30px; }
 nav a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; }
 .logo { font-size: 1.5rem; color: var(--accent); font-weight: 700; text-decoration: none; }
 
-/* --- HERO --- */
+/* --- HERO SECTION REVISITÉE --- */
 #hero {
     display: flex;
-    align-items: center;
+    align-items: center; /* Aligne verticalement le texte et l'image */
     justify-content: space-between;
-    padding: 60px 0 100px;
-    gap: 40px;
+    padding: 80px 0;
+    gap: 50px;
+    min-height: 70vh; /* Hauteur confortable sans être excessive */
 }
-.hero-content { flex: 1; }
-h1 { font-size: 3.2rem; margin: 20px 0; line-height: 1.2; }
-.intro-text { font-size: 1.15rem; color: var(--secondary); margin-bottom: 40px; }
 
-/* PHOTO DE PROFIL AJUSTÉE */
-.hero-image-box {
-    flex: 0 0 300px;
-    height: 300px;
-    border-radius: 20px; /* Carré arrondi élégant */
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+.hero-content {
+    flex: 1;
+    max-width: 600px; /* Empêche le texte de s'étaler trop */
 }
+
+h1 { 
+    font-size: 3rem; 
+    margin: 20px 0; 
+    line-height: 1.1; 
+    font-weight: 700;
+}
+
+/* BOÎTE IMAGE : Taille fixe et propre */
+.hero-image-box {
+    flex: 0 0 320px; /* La boîte fera exactement 320px de large */
+    height: 420px;   /* Hauteur plus grande pour un format portrait élégant */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    background: #111; /* Fond de secours */
+}
+
 .hero-image-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* On voit bien toute la tête et le buste */
+    object-fit: cover; /* Remplit la boîte */
+    object-position: center 20%; /* Ajuste pour voir le haut de la tête et le cou */
     display: block;
+}
+
+/* --- RESPONSIVE : Pour mobile --- */
+@media (max-width: 850px) {
+    #hero {
+        flex-direction: column-reverse; /* Image en haut sur mobile */
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    .hero-image-box {
+        flex: 0 0 280px; /* Un peu plus petit sur mobile */
+        height: 350px;
+        margin: 0 auto 30px;
+    }
+
+    h1 { font-size: 2.2rem; }
+    
+    .btn-secondary {
+        display: block;
+        margin: 20px 0 0 0;
+    }
 }
 
 /* --- BOUTONS --- */
