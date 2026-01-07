@@ -3,50 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bâtir l'Infrastructure | Bruno Chazeaud</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>Serveur & Déploiement | Bruno Chazeaud</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="project-page">
+<body>
     <header>
         <nav class="container">
             <a href="index.html" class="logo">B.C</a>
+            <a href="index.html#creations" style="color: var(--accent); text-decoration: none;">← Retour</a>
         </nav>
     </header>
 
     <main class="container">
-        <div class="project-header">
-            <a href="index.html#creations" class="back-link">← Retour aux créations</a>
+        <div style="text-align: center; padding: 40px 0;">
             <h1>Serveur & Déploiement</h1>
-            <p class="subtitle">Déploiement et gestion d'une plateforme Masterclass</p>
+            <p>Infrastructure et administration système</p>
         </div>
 
-        <section class="project-content">
-            <div class="glass-box">
-                <h3>L'Objectif</h3>
-                <p>Permettre une inscription fluide et une gestion automatique des rappels pour des événements en ligne, afin que l'organisatrice puisse se concentrer uniquement sur son contenu pédagogique.</p>
-            </div>
+        <div class="glass-section">
+            <h3>L'Objectif</h3>
+            <p>Comprendre "la tuyauterie de l'internet" en déployant manuellement une infrastructure stable pour une plateforme de Masterclass.</p>
+        </div>
 
-            <div class="glass-box">
-                <h3>Mon Apprentissage en Autodidacte</h3>
-                <p>J'ai choisi de ne pas utiliser de solutions "clés en main" pour comprendre la tuyauterie de l'Internet :</p>
-                <ul>
-                    <li>Configuration d'un <strong>serveur Linux (VPS)</strong>.</li>
-                    <li>Utilisation de <strong>Nginx</strong> et <strong>PM2</strong> pour la stabilité.</li>
-                    <li>Gestion rigoureuse des versions via <strong>Git</strong>.</li>
-                </ul>
-                <a href="https://github.com/brunochazeaud17-crypto/masterclass_site" class="btn-primary" target="_blank">Voir les coulisses</a>
+        <div class="glass-section">
+            <h3>Compétences Techniques</h3>
+            <div style="margin-bottom: 15px;">
+                <span class="tech-tag">Linux (VPS)</span>
+                <span class="tech-tag">Nginx</span>
+                <span class="tech-tag">PM2</span>
+                <span class="tech-tag">Git</span>
             </div>
-
-            <div class="glass-box highlight">
-                <h3>Ma Pro-activité</h3>
-                <p>Ce projet prouve que je ne recule devant aucun obstacle technique. Si une solution nécessite d'apprendre l'administration système, je le fais. C'est cette **autonomie** que je mets au service de mes futurs collaborateurs.</p>
-            </div>
-        </section>
+            <p>Configuration d'un serveur Linux, gestion des certificats SSL et automatisation du maintien en ligne via PM2.</p>
+        </div>
     </main>
-
-    <footer>
-        <p>&copy; 2026 Bruno Chazeaud</p>
-    </footer>
 </body>
 </html>
