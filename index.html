@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno Chazeaud | Explorateur de Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>Bruno Chazeaud | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,25 +13,20 @@
         <nav class="container">
             <a href="#" class="logo">B.C</a>
             <ul>
-                <li><a href="#parcours">Mon Odyssée</a></li>
-                <li><a href="#creations">Créations</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#creations">Projets</a></li>
+                <li><a href="mailto:brunochazeaud17@gmail.com">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- HERO SECTION -->
         <section id="hero" class="container">
             <div class="hero-content">
-                <span class="eyebrow">Ingénieur de formation | Créateur par passion</span>
-                <h1>Construire des ponts entre les idées et la réalité.</h1>
-                <p class="intro-text">
-                    Mon parcours a commencé sous le soleil d'Abidjan pour me mener aux frontières de l'IA et de la Finance. 
-                    Je ne me contente pas de coder ; je résous des problèmes humains et techniques.
-                </p>
-                <div class="hero-cta">
-                    <a href="#creations" class="btn-primary">Découvrir mes projets</a>
+                <h1>Transformer les données en solutions concrètes.</h1>
+                <p>Ingénieur de formation spécialisé en gestion des risques, j'allie rigueur analytique et créativité technique pour relever les défis de l'IA et de la Finance.</p>
+                <div style="margin-top: 30px;">
+                    <a href="#creations" class="btn-primary">Voir mes projets</a>
                     <a href="#parcours" class="btn-secondary">Mon parcours</a>
                 </div>
             </div>
@@ -40,101 +35,64 @@
             </div>
         </section>
 
-        <!-- MON ODYSSÉE (Narration restaurée) -->
         <section id="parcours" class="container">
-            <h2 class="section-title">Mon Odyssée</h2>
+            <h2 class="section-title">Mon Parcours Professionnel</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="date">Abidjan, Côte d'Ivoire</div>
-                    <h3>Les Racines : Bac S (Physique-Chimie)</h3>
-                    <p>C'est ici que tout commence. Une curiosité scientifique insatiable et le désir de comprendre les mécanismes du monde à travers la physique.</p>
+                    <div class="date">Société Générale, Madagascar</div>
+                    <h3>Assistant Contrôle de Gestion</h3>
+                    <p>Appui au pilotage de la performance, analyse des indicateurs de gestion (KPI) et reporting financier.</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="date">Licence & Master 1</div>
-                    <h3>L'Analyse : Économie & Gestion</h3>
-                    <p>Apprendre à lire entre les chiffres. Comprendre les flux, les marchés et les comportements humains derrière l'économie mondiale.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="date">Master 2</div>
-                    <h3>La Rigueur : Ingénierie des Risques</h3>
-                    <p>Spécialisation dans la modélisation financière. Apprendre à prévoir l'imprévisible et à structurer des données complexes pour la finance.</p>
+                    <div class="date">Forsides France (Stage M2)</div>
+                    <h3>Ingénierie des Risques Climatiques</h3>
+                    <p>Développement d'un modèle d'évaluation d'impact financier des risques climatiques sous Python via la bibliothèque CLIMADA.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="date">Aujourd'hui</div>
-                    <h3>L'Expansion : IA & Développement Mobile</h3>
-                    <p>Fusionner la rigueur de l'analyse avec la puissance créative du code pour créer des outils à fort impact comme le Grimoire Parental.</p>
+                    <h3>En quête de nouveaux défis</h3>
+                    <p>Fraîchement diplômé, je suis ouvert à de nouvelles opportunités pour mettre mes compétences analytiques et techniques au service de votre structure.</p>
                 </div>
             </div>
         </section>
 
-        <!-- CRÉATIONS (6 projets au total) -->
         <section id="creations" class="container">
-            <h2 class="section-title">Mes Créations</h2>
+            <h2 class="section-title">Expériences Professionnelles</h2>
             <div class="projects-grid">
-                
-                <!-- 1. GRIMOIRE -->
-                <a href="projet-grimoire.html" class="project-card featured">
-                    <span class="emoji">✨</span>
-                    <h4>Le Grimoire Parental</h4>
-                    <p>Application Flutter & IA pour l'apprentissage de la PNL de la petite enfance.</p>
-                    <span class="read-more">Voir les détails →</span>
+                <a href="projet-forsides.html" class="project-card">
+                    <h4>Modélisation Climatique</h4>
+                    <p>Analyse des risques et évaluation financière via Python & CLIMADA chez Forsides France.</p>
+                    <span class="read-more">Consulter le projet →</span>
                 </a>
-
-                <!-- 2. ZOOM -->
-                <a href="projet-zoom.html" class="project-card">
-                    <span class="emoji">🤖</span>
-                    <h4>Automatisation & Pipeline</h4>
-                    <p>Flux ETL intelligent pour l'inscription automatique aux événements Zoom.</p>
-                    <span class="read-more">Voir les détails →</span>
-                </a>
-
-                <!-- 3. MASTERCLASS -->
-                <a href="projet-masterclass.html" class="project-card">
-                    <span class="emoji">🚀</span>
-                    <h4>Infrastructure & Déploiement</h4>
-                    <p>Mise en place de serveurs privés (VPS) pour héberger des plateformes web.</p>
-                    <span class="read-more">Voir les détails →</span>
-                </a>
-
-                <!-- 4. ACCOMPAGNEMENT -->
-                <a href="projet-accompagnement.html" class="project-card">
-                    <span class="emoji">💳</span>
-                    <h4>Paiement Sécurisé & API</h4>
-                    <p>Intégration d'un système de transaction Stripe sécurisé pour les clients.</p>
-                    <span class="read-more">Voir les détails →</span>
-                </a>
-
-                <!-- 5. PATISSIER -->
-                <div class="project-card static">
-                    <span class="emoji">🍰</span>
-                    <h4>Pâtisserie Artisanale</h4>
-                    <p>Accompagnement d'un ami apprenti pâtissier dans sa visibilité numérique.</p>
+                <div class="project-card">
+                    <h4>Contrôle de Gestion</h4>
+                    <p>Optimisation du reporting et des flux de données à la Société Générale Madagascar.</p>
                 </div>
-
-                <!-- 6. JOURNALISTE -->
-                <div class="project-card static">
-                    <span class="emoji">🎤</span>
-                    <h4>Journalisme Citoyen</h4>
-                    <p>Création d'un espace de parole pour une journaliste en Côte d'Ivoire.</p>
-                </div>
-
             </div>
-        </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="container">
-            <div class="glass-box">
-                <h2>Envie de collaborer ?</h2>
-                <p>Je suis à la recherche d'une opportunité où ma polyvalence et ma soif d'apprendre feront la différence.</p>
-                <div class="contact-btns">
-                    <a href="mailto:brunochazeaud17@gmail.com" class="btn-primary">M'envoyer un message</a>
-                </div>
+            <h2 class="section-title">Projets Personnels & IA</h2>
+            <div class="projects-grid">
+                <a href="projet-grimoire.html" class="project-card">
+                    <h4>Le Grimoire Parental</h4>
+                    <p>Application Flutter intégrant l'IA Gemini pour l'apprentissage de la PNL parentale.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
+                <a href="projet-zoom.html" class="project-card">
+                    <h4>Automatisation ETL</h4>
+                    <p>Flux intelligent n8n pour la gestion automatique des inscriptions aux événements.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
+                <a href="projet-masterclass.html" class="project-card">
+                    <h4>Infrastructure VPS</h4>
+                    <p>Configuration et déploiement de serveurs Linux Nginx pour des plateformes web.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Bruno Chazeaud. De la finance à la création numérique.</p>
+    <footer class="container" style="text-align: center; padding: 80px 0; opacity: 0.6; font-size: 0.8rem;">
+        <p>&copy; 2026 Bruno Chazeaud | De l'analyse de risque à la création numérique.</p>
     </footer>
 
 </body>
