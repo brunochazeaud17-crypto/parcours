@@ -1,39 +1,72 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risques Climatiques | Bruno Chazeaud</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">B.C</a>
-            <a href="index.html#creations" style="color: var(--accent); text-decoration: none;">← Retour</a>
-        </nav>
-    </header>
+<main class="container">
+    <div style="text-align: center; padding: 40px 0;">
+        <h1>Modèle interne de risques climatiques – ForCatNat</h1>
+        <p>Forsides France | Actuaire / Data Scientist</p>
+    </div>
 
-    <main class="container">
-        <div style="text-align: center; padding: 40px 0;">
-            <h1>Modèle de Risques Climatiques</h1>
-            <p>Forsides France | Stage de fin d'études M2</p>
-        </div>
+    <div class="glass-section">
+        <h3>Objectif du projet</h3>
+        <p>
+            Développer un modèle interne de catastrophe naturelle sous Python afin d’estimer
+            les pertes financières liées aux inondations et d’améliorer l’évaluation des biens
+            immobiliers exposés dans un contexte de changement climatique.
+        </p>
+    </div>
 
-        <div class="glass-section">
-            <h3>Le Projet</h3>
-            <p>Construction d'un modèle d'évaluation de l'impact financier des aléas climatiques sur les portefeuilles d'assurance.</p>
-        </div>
+    <div class="glass-section">
+        <h3>Enjeux métier</h3>
+        <ul>
+            <li>Anticipation des pertes financières futures liées aux inondations</li>
+            <li>Construction d’un outil propriétaire, transparent et adaptable</li>
+            <li>Intégration de projections climatiques long terme (2011–2100)</li>
+        </ul>
+    </div>
 
-        <div class="glass-section">
-            <h3>Expertise Technique</h3>
-            <div style="margin-bottom: 15px;">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">CLIMADA</span>
-                <span class="tech-tag">Analyse de Risque</span>
-            </div>
-            <p>Développement de scripts Python exploitant la bibliothèque CLIMADA pour simuler des dommages financiers liés aux événements extrêmes.</p>
-        </div>
-    </main>
-</body>
-</html>
+    <div class="glass-section">
+        <h3>Contributions techniques</h3>
+
+        <h4>🌊 Modélisation de l’aléa inondation</h4>
+        <p>
+            Production de cartes d’inondations futures sur grille 1 km × 1 km, intégrant
+            les données hydrologiques Copernicus et GloFAS. Implémentation de lois de Gumbel
+            pour le calcul des périodes de retour et validation par benchmarking avec l’AZI.
+        </p>
+
+        <h4>🏠 Prédiction des valeurs immobilières</h4>
+        <p>
+            Entraînement de modèles KNN, Random Forest et Gradient Boosting sur plus de
+            5 millions de lignes de données bâtimentaires. Le meilleur modèle atteint
+            un R² de 0,78 avec une erreur moyenne comprise entre ±12 et 15 %.
+        </p>
+
+        <h4>⚙️ Optimisation & Data Engineering</h4>
+        <p>
+            Réduction du temps de calcul par 3 (8h → 2h30) et division par 4 des volumes
+            de stockage (200 Go → 50 Go) via optimisation et refactoring Python.
+        </p>
+
+        <h4>🔧 CLIMADA & Open Source</h4>
+        <p>
+            Audit et adaptation de la librairie open source CLIMADA, développement
+            d’interpolations spatiales avancées avec xesmf pour répondre aux besoins métier.
+        </p>
+    </div>
+
+    <div class="glass-section">
+        <h3>Résultats</h3>
+        <p>
+            Modèle ForCatNat opérationnel et validé, fournissant des cartographies cohérentes
+            des inondations futures et un outil intégré de prédiction des valeurs immobilières,
+            constituant une base robuste pour des extensions multi-aléas.
+        </p>
+    </div>
+
+    <div class="glass-section">
+        <h3>Technologies</h3>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Machine Learning</span>
+        <span class="tech-tag">CLIMADA</span>
+        <span class="tech-tag">Data Engineering</span>
+        <span class="tech-tag">Risques Climatiques</span>
+    </div>
+</main>
