@@ -1,54 +1,50 @@
 <main class="container">
     <div style="text-align: center; padding: 40px 0;">
-        <h1>Modèle interne de risques climatiques – ForCatNat</h1>
-        <p>Forsides France | Actuaire / Data Scientist</p>
+        <h1>Modèle interne de risques climatiques</h1>
+        <p>Forsides France · Actuaire / Data Scientist</p>
     </div>
 
     <div class="glass-section">
         <h3>Objectif du projet</h3>
         <p>
-            Développer un modèle interne de catastrophe naturelle sous Python afin d’estimer
-            les pertes financières liées aux inondations et d’améliorer l’évaluation des biens
-            immobiliers exposés dans un contexte de changement climatique.
+            Développer un modèle interne de catastrophe naturelle (ForCatNat) sous Python,
+            destiné à estimer les pertes financières liées aux inondations et à améliorer
+            l’évaluation des biens immobiliers exposés, dans un contexte d’évolution du risque climatique.
         </p>
     </div>
 
     <div class="glass-section">
         <h3>Enjeux métier</h3>
-        <ul>
-            <li>Anticipation des pertes financières futures liées aux inondations</li>
-            <li>Construction d’un outil propriétaire, transparent et adaptable</li>
-            <li>Intégration de projections climatiques long terme (2011–2100)</li>
-        </ul>
+        <p>
+            Anticiper l’impact financier futur des inondations sur les portefeuilles assurantiels,
+            disposer d’un outil propriétaire et transparent, et intégrer des projections climatiques
+            long terme (2011–2100) dans les modèles de risque.
+        </p>
     </div>
 
     <div class="glass-section">
         <h3>Contributions techniques</h3>
 
-        <h4>🌊 Modélisation de l’aléa inondation</h4>
-        <p>
-            Production de cartes d’inondations futures sur grille 1 km × 1 km, intégrant
-            les données hydrologiques Copernicus et GloFAS. Implémentation de lois de Gumbel
-            pour le calcul des périodes de retour et validation par benchmarking avec l’AZI.
+        <p><strong>🌊 Modélisation de l’aléa inondation</strong><br>
+        Production de cartes d’inondations futures sur grille 1 km × 1 km (profondeurs, périodes de retour),
+        intégrant les projections hydrologiques Copernicus et les données historiques GloFAS.
+        Implémentation de lois de Gumbel et validation par comparaison avec l’Atlas des Zones Inondables (AZI).
         </p>
 
-        <h4>🏠 Prédiction des valeurs immobilières</h4>
-        <p>
-            Entraînement de modèles KNN, Random Forest et Gradient Boosting sur plus de
-            5 millions de lignes de données bâtimentaires. Le meilleur modèle atteint
-            un R² de 0,78 avec une erreur moyenne comprise entre ±12 et 15 %.
+        <p><strong>🏠 Prédiction des valeurs immobilières</strong><br>
+        Entraînement de modèles KNN, Random Forest et Gradient Boosting sur plus de 5 millions
+        de lignes de données bâtimentaires. Le meilleur modèle atteint un R² de 0,78 avec
+        une erreur moyenne comprise entre ±12 et 15 %.
         </p>
 
-        <h4>⚙️ Optimisation & Data Engineering</h4>
-        <p>
-            Réduction du temps de calcul par 3 (8h → 2h30) et division par 4 des volumes
-            de stockage (200 Go → 50 Go) via optimisation et refactoring Python.
+        <p><strong>⚙️ Optimisation & Data Engineering</strong><br>
+        Réduction du temps de calcul par 3 (8h → 2h30 par année simulée) et division par 4
+        des volumes de stockage (200 Go → 50 Go) grâce à l’optimisation et au refactoring Python.
         </p>
 
-        <h4>🔧 CLIMADA & Open Source</h4>
-        <p>
-            Audit et adaptation de la librairie open source CLIMADA, développement
-            d’interpolations spatiales avancées avec xesmf pour répondre aux besoins métier.
+        <p><strong>🔧 CLIMADA & Open Source</strong><br>
+        Audit et adaptation de la librairie open source CLIMADA, avec développement
+        d’interpolations spatiales avancées via la bibliothèque xesmf pour répondre aux besoins métier.
         </p>
     </div>
 
@@ -56,8 +52,8 @@
         <h3>Résultats</h3>
         <p>
             Modèle ForCatNat opérationnel et validé, fournissant des cartographies cohérentes
-            des inondations futures et un outil intégré de prédiction des valeurs immobilières,
-            constituant une base robuste pour des extensions multi-aléas.
+            des inondations futures et un outil intégré de prédiction immobilière.
+            Le modèle constitue une base robuste pour des extensions futures multi-aléas.
         </p>
     </div>
 
