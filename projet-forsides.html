@@ -1,68 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Risques Climatiques | Bruno Chazeaud</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="container">
+        <a href="../index.html" class="logo">B.C</a>
+        <a href="../index.html#creations" style="color: var(--accent); text-decoration: none;">← Retour</a>
+    </nav>
+</header>
+
 <main class="container">
-    <div style="text-align: center; padding: 40px 0;">
+
+    <section style="text-align:center; padding:80px 0 40px;">
         <h1>Modèle interne de risques climatiques</h1>
         <p>Forsides France · Actuaire / Data Scientist</p>
-    </div>
+    </section>
 
+    <h2 class="section-title">Objectif du projet</h2>
     <div class="glass-section">
-        <h3>Objectif du projet</h3>
         <p>
-            Développer un modèle interne de catastrophe naturelle (ForCatNat) sous Python,
+            Développement d’un modèle interne de catastrophe naturelle (ForCatNat) sous Python,
             destiné à estimer les pertes financières liées aux inondations et à améliorer
-            l’évaluation des biens immobiliers exposés, dans un contexte d’évolution du risque climatique.
+            l’évaluation des biens immobiliers exposés dans un contexte de changement climatique.
         </p>
     </div>
 
+    <h2 class="section-title">Enjeux métier</h2>
     <div class="glass-section">
-        <h3>Enjeux métier</h3>
         <p>
             Anticiper l’impact financier futur des inondations sur les portefeuilles assurantiels,
-            disposer d’un outil propriétaire et transparent, et intégrer des projections climatiques
-            long terme (2011–2100) dans les modèles de risque.
+            disposer d’un outil propriétaire et transparent, et intégrer des projections
+            climatiques long terme (2011–2100) dans les modèles de risque.
         </p>
     </div>
 
+    <h2 class="section-title">Contributions techniques</h2>
     <div class="glass-section">
-        <h3>Contributions techniques</h3>
 
         <p><strong>🌊 Modélisation de l’aléa inondation</strong><br>
-        Production de cartes d’inondations futures sur grille 1 km × 1 km (profondeurs, périodes de retour),
-        intégrant les projections hydrologiques Copernicus et les données historiques GloFAS.
-        Implémentation de lois de Gumbel et validation par comparaison avec l’Atlas des Zones Inondables (AZI).
+        Cartographies futures sur grille 1 km × 1 km intégrant Copernicus et GloFAS,
+        ajustements de lois de Gumbel et validation par benchmarking avec l’AZI.
         </p>
 
         <p><strong>🏠 Prédiction des valeurs immobilières</strong><br>
-        Entraînement de modèles KNN, Random Forest et Gradient Boosting sur plus de 5 millions
-        de lignes de données bâtimentaires. Le meilleur modèle atteint un R² de 0,78 avec
-        une erreur moyenne comprise entre ±12 et 15 %.
+        Modèles KNN, Random Forest et Gradient Boosting entraînés sur +5M de lignes,
+        avec un R² maximal de 0,78 et une erreur moyenne de ±12–15 %.
         </p>
 
         <p><strong>⚙️ Optimisation & Data Engineering</strong><br>
-        Réduction du temps de calcul par 3 (8h → 2h30 par année simulée) et division par 4
-        des volumes de stockage (200 Go → 50 Go) grâce à l’optimisation et au refactoring Python.
+        Temps de calcul divisé par 3 (8h → 2h30) et stockage réduit par 4 (200 Go → 50 Go)
+        via optimisation et refactoring Python.
         </p>
 
         <p><strong>🔧 CLIMADA & Open Source</strong><br>
-        Audit et adaptation de la librairie open source CLIMADA, avec développement
-        d’interpolations spatiales avancées via la bibliothèque xesmf pour répondre aux besoins métier.
+        Audit et adaptation de la librairie CLIMADA, développement d’interpolations
+        spatiales avancées avec xesmf.
         </p>
+
     </div>
 
+    <h2 class="section-title">Résultats</h2>
     <div class="glass-section">
-        <h3>Résultats</h3>
         <p>
-            Modèle ForCatNat opérationnel et validé, fournissant des cartographies cohérentes
-            des inondations futures et un outil intégré de prédiction immobilière.
-            Le modèle constitue une base robuste pour des extensions futures multi-aléas.
+            Modèle ForCatNat opérationnel, validé par comparaison avec les références officielles,
+            intégrant cartographies d’inondations futures et outil de prédiction immobilière,
+            prêt pour des extensions multi-aléas.
         </p>
     </div>
 
+    <h2 class="section-title">Technologies</h2>
     <div class="glass-section">
-        <h3>Technologies</h3>
         <span class="tech-tag">Python</span>
         <span class="tech-tag">Machine Learning</span>
         <span class="tech-tag">CLIMADA</span>
         <span class="tech-tag">Data Engineering</span>
         <span class="tech-tag">Risques Climatiques</span>
     </div>
+
 </main>
+
+</body>
+</html>
