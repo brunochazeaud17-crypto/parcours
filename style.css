@@ -71,6 +71,19 @@ h1 { font-size: 3rem; margin: 20px 0; line-height: 1.2; }
     margin-left: 15px;
     transition: 0.3s;
 }
+.btn-secondary:hover { background: var(--accent); color: #0f172a !important; }
+
+.btn-outline {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: 0.3s;
+    display: inline-block;
+}
+.btn-outline:hover { background: var(--accent); color: #0f172a !important; }
 
 /* --- TIMELINE (Narration Académique) --- */
 .section-title { margin: 80px 0 40px; font-size: 2rem; border-left: 4px solid var(--accent); padding-left: 15px; }
@@ -101,7 +114,26 @@ h1 { font-size: 3rem; margin: 20px 0; line-height: 1.2; }
 }
 .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 .project-card h4 { color: var(--accent); margin-bottom: 10px; font-size: 1.2rem; }
+.project-card p { margin-bottom: 15px; font-size: 0.9rem; opacity: 0.8; }
 .read-more { display: block; margin-top: auto; padding-top: 15px; font-weight: 600; font-size: 0.8rem; color: var(--accent); }
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+}
+.tech-tag {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+}
+.project-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
 
 /* --- SOUS-PAGES --- */
 .project-main-image {
@@ -120,17 +152,10 @@ h1 { font-size: 3rem; margin: 20px 0; line-height: 1.2; }
     margin-bottom: 25px;
     border-left: 4px solid var(--accent);
 }
-.tech-tag {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--accent);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    margin-right: 5px;
-}
 
 @media (max-width: 768px) {
     #hero { flex-direction: column; text-align: center; }
+    nav ul { display: none; }
 }
 
 /* --- SECTION CV --- */
