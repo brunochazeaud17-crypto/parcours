@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détection d'anomalies Ethereum | Bruno Chazeaud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">B.C</a>
+            <a href="index.html#projets-data" style="color: var(--accent); text-decoration: none;">← Retour aux projets Data</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div style="text-align: center; padding: 40px 0;">
+            <h1>🔍 Détection d'anomalies sur la blockchain Ethereum</h1>
+            <p>Machine Learning non supervisé pour la détection de wallets frauduleux</p>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/brunochazeaud17-crypto/ethereum-anomalies-detection/main/assets/ethereum_banner.png" 
+             alt="Ethereum Anomalies Detection" 
+             class="project-main-image"
+             onerror="this.src='https://via.placeholder.com/600x300?text=Ethereum+Anomalies+Detection'">
+
+        <div class="glass-section">
+            <h3>🎯 Contexte du projet</h3>
+            <p>La blockchain Ethereum, bien que transparente, est régulièrement utilisée pour des activités frauduleuses. Ce projet vise à identifier automatiquement les wallets suspects (adresses) à partir de leur historique de transactions, en utilisant des techniques de Machine Learning non supervisé.</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>📊 Approche technique</h3>
+            <p>À partir de plus de 7 millions de transactions, j'ai construit un jeu de données de 734 359 portefeuilles uniques avec des features comportementales :</p>
+            <ul style="margin-top: 15px; margin-left: 20px; color: var(--secondary);">
+                <li>Nombre de transactions</li>
+                <li>Montant total envoyé (ETH)</li>
+                <li>Montant moyen par transaction</li>
+                <li>Durée de vie du wallet (heures)</li>
+                <li>Fréquence des transactions</li>
+                <li>Taux d'erreur des transactions</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>🤖 Modèles utilisés</h3>
+            <p>Deux approches de détection d'anomalies ont été implémentées et comparées :</p>
+            <div style="margin-top: 20px;">
+                <h4 style="color: var(--accent);">🌲 Isolation Forest</h4>
+                <p>Modèle basé sur des arbres de décision aléatoires, efficace pour isoler les anomalies dans des données de haute dimension.</p>
+                <h4 style="color: var(--accent); margin-top: 15px;">🧠 Autoencoder (Deep Learning)</h4>
+                <p>Réseau de neurones qui apprend à reconstruire des données "normales". Les wallets mal reconstruits sont considérés comme suspects.</p>
+            </div>
+        </div>
+
+        <div class="glass-section">
+            <h3>📈 Résultats clés</h3>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li><strong>Isolation Forest</strong> : 7 341 anomalies détectées (1.00%)</li>
+                <li><strong>Autoencoder</strong> : 36 718 anomalies détectées (5.00%)</li>
+                <li><strong>Anomalies communes</strong> : 7 218 wallets (0.98%)</li>
+                <li><strong>Niveaux de risque</strong> : Catégorisation en 3 niveaux (Normal, Modéré, Élevé)</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>🛠️ Technologies utilisées</h3>
+            <div style="margin-bottom: 15px;">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Scikit-learn</span>
+                <span class="tech-tag">TensorFlow/Keras</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Matplotlib</span>
+                <span class="tech-tag">Seaborn</span>
+            </div>
+            <p><strong>Infrastructure</strong> : Jupyter Notebook, Google Colab, GitHub, Streamlit Cloud</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>📱 Application interactive</h3>
+            <p>Une application Streamlit permet de visualiser les résultats et d'explorer les wallets suspects de manière intuitive.</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://ethereum-anomalies-detection.streamlit.app" class="btn-primary" target="_blank" style="margin-right: 15px;">🚀 Lancer l'application</a>
+                <a href="https://github.com/brunochazeaud17-crypto/ethereum-anomalies-detection" class="btn-secondary" target="_blank">📁 Voir le code source</a>
+            </div>
+        </div>
+
+        <div class="glass-section">
+            <h3>🔮 Perspectives d'amélioration</h3>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li>Ajout de features basées sur le réseau de transactions (centralité, degré, etc.)</li>
+                <li>Utilisation de modèles plus avancés (Graph Neural Networks)</li>
+                <li>Intégration de données de labels d'escroqueries connues</li>
+                <li>Mise en place d'une API pour l'analyse en temps réel</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; padding: 30px;">
+            <a href="index.html#projets-data" class="btn-secondary">← Retour aux projets Data</a>
+        </div>
+    </main>
+
+    <footer class="container" style="text-align: center; padding: 60px 0; opacity: 0.6; font-size: 0.8rem;">
+        <p>&copy; 2026 Bruno Chazeaud | De la donnée à la décision.</p>
+    </footer>
+</body>
+</html>
