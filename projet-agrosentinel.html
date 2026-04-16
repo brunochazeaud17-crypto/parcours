@@ -4,8 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroSentinel | Souveraineté Alimentaire | Bruno Chazeaud</title>
+    
+    <!-- Préconnexion pour accélérer le chargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Fallback pour les images non chargées */
+        .image-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 250px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,7 +48,7 @@
         <img src="https://raw.githubusercontent.com/brunochazeaud17-crypto/agro-aliment-pipeline/main/assets/agrosentinel_banner.png" 
              alt="AgroSentinel Dashboard" 
              class="project-main-image"
-             onerror="this.src='https://via.placeholder.com/600x300/0f172a/d4af37?text=AgroSentinel+Dashboard'">
+             onerror="this.outerHTML='<div class=\'image-fallback project-main-image\'><span>AgroSentinel Dashboard<br>Banner non disponible</span></div>'">
 
         <div class="glass-section">
             <h3>Contexte du projet</h3>
