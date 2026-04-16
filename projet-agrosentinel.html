@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Fallback pour les images non chargées */
+        /* Fallback pour les images non chargées - plus utilisé mais conservé */
         .image-fallback {
             display: flex;
             align-items: center;
@@ -48,7 +48,7 @@
         <img src="https://raw.githubusercontent.com/brunochazeaud17-crypto/agro-aliment-pipeline/main/assets/agrosentinel_banner.png" 
              alt="AgroSentinel" 
              class="project-main-image"
-             onerror="this.outerHTML='<div class=\'image-fallback project-main-image\'><span>AgroSentinel<br>Banner non disponible</span></div>'">
+             onerror="this.style.display='none'">
 
         <div class="glass-section">
             <h3>Contexte du projet</h3>
