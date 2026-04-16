@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSentinel | Souveraineté Alimentaire | Bruno Chazeaud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">B.C</a>
+            <a href="index.html#projets-data" style="color: var(--accent); text-decoration: none;">← Retour aux projets Data</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div style="text-align: center; padding: 40px 0;">
+            <h1>AgroSentinel : Veille sur la Souveraineté Alimentaire Européenne</h1>
+            <p>Dashboard interactif d'analyse de la dépendance aux engrais et de l'impact sur les prix alimentaires</p>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/brunochazeaud17-crypto/agro-aliment-pipeline/main/assets/agrosentinel_banner.png" 
+             alt="AgroSentinel Dashboard" 
+             class="project-main-image"
+             onerror="this.src='https://via.placeholder.com/600x300/0f172a/d4af37?text=AgroSentinel+Dashboard'">
+
+        <div class="glass-section">
+            <h3>Contexte du projet</h3>
+            <p>La souveraineté alimentaire de l'Europe est fortement impactée par sa dépendance aux engrais importés, eux-mêmes étroitement liés au prix du gaz naturel. Ce projet vise à créer un outil de veille stratégique permettant d'anticiper les tensions sur les prix alimentaires 6 à 18 mois avant qu'elles n'atteignent le consommateur.</p>
+            <p>La chaîne de transmission est la suivante : Gaz naturel → Ammoniac (procédé Haber-Bosch) → Engrais azotés → Rendements agricoles → Prix alimentaires.</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>Approche technique</h3>
+            <p>Le dashboard s'appuie sur un pipeline de données automatisé qui collecte et analyse quotidiennement :</p>
+            <ul style="margin-top: 15px; margin-left: 20px; color: var(--secondary);">
+                <li>Les cours boursiers de 6 géants européens des engrais (Yara, OCI, ICL, CF Industries, Grupa Azoty, K+S)</li>
+                <li>Les prix des matières premières : Gaz naturel TTF (référence européenne) et Blé (Chicago SRW)</li>
+                <li>Les actualités sectorielles via NewsAPI (mots-clés : fertilizer, Europe, gas, Middle East)</li>
+                <li>L'analyse de sentiment des titres d'articles avec l'algorithme VADER (NLP)</li>
+                <li>Les données macroéconomiques : Indice FAO des prix alimentaires et stocks céréaliers USDA</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>Fonctionnalités du dashboard</h3>
+            <p>L'application Streamlit propose six onglets d'analyse complémentaires :</p>
+            <div style="margin-top: 20px;">
+                <h4 style="color: var(--accent);">1. Analyse de l'état financier des géants</h4>
+                <p>Comparaison des performances boursières, matrice de corrélation, bandes de Bollinger et waterfall chart pour décomposer les contributions hebdomadaires.</p>
+                
+                <h4 style="color: var(--accent); margin-top: 15px;">2. Radar de Crise</h4>
+                <p>Indicateur de stress géopolitique combinant volatilité des marchés et négativité des actualités. Calendrier mensuel du sentiment médiatique et diagramme de Sankey des flux d'influence.</p>
+                
+                <h4 style="color: var(--accent); margin-top: 15px;">3. Journal de Bord</h4>
+                <p>Visualisation synchrone prix/sentiment, identification des événements marquants, frise chronologique interactive et matrice des délais de réaction entre actualités et marchés.</p>
+                
+                <h4 style="color: var(--accent); margin-top: 15px;">4. Intrants & Dépendances</h4>
+                <p>Corrélation prix du gaz vs producteurs d'engrais, part des importations d'engrais de l'UE par pays, ratio Blé/Engrais (pouvoir d'achat des agriculteurs) et carte européenne de la dépendance aux engrais importés.</p>
+                
+                <h4 style="color: var(--accent); margin-top: 15px;">5. Impact Consommateur</h4>
+                <p>Simulation d'impact sur un panier alimentaire type, estimation de la majoration pour un ménage français, délai de transmission gaz → prix alimentaires et suivi de l'inflation alimentaire européenne (données Eurostat).</p>
+                
+                <h4 style="color: var(--accent); margin-top: 15px;">6. Scénarios de Crise</h4>
+                <p>Simulation interactive de l'impact d'une variation du prix du gaz sur les valorisations des entreprises et projection de l'inflation alimentaire résultante.</p>
+            </div>
+        </div>
+
+        <div class="glass-section">
+            <h3>Architecture du pipeline de données</h3>
+            <p>Le projet repose sur une architecture entièrement automatisée :</p>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li><strong>Collecte</strong> : yfinance pour les données boursières et matières premières, NewsAPI pour les actualités, OpenBB pour les données USDA, scraping du CSV public de la FAO</li>
+                <li><strong>Traitement</strong> : NLTK (VADER) pour l'analyse de sentiment des titres d'articles</li>
+                <li><strong>Stockage</strong> : Base de données SQLite locale mise à jour quotidiennement</li>
+                <li><strong>Automatisation</strong> : Script Python exécuté toutes les 24h via GitHub Actions</li>
+                <li><strong>Visualisation</strong> : Dashboard Streamlit avec Plotly pour les graphiques interactifs</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>Technologies utilisées</h3>
+            <div style="margin-bottom: 15px;">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Plotly</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">yfinance</span>
+                <span class="tech-tag">NLTK / VADER</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">NewsAPI</span>
+                <span class="tech-tag">GitHub Actions</span>
+                <span class="tech-tag">OpenBB</span>
+                <span class="tech-tag">WordCloud</span>
+            </div>
+            <p><strong>Infrastructure</strong> : Streamlit Cloud, GitHub, GitHub Actions (CI/CD), SQLite</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>Insights clés</h3>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li>Le gaz naturel représente 70 à 80% du coût de production d'une tonne d'ammoniac</li>
+                <li>L'Europe importe encore 30% de ses engrais azotés de Russie et Biélorussie</li>
+                <li>Corrélation négative significative entre le prix du gaz TTF et la valorisation de Yara (leader européen)</li>
+                <li>Délai de transmission observé : 15 à 30 jours entre hausse du gaz et hausse du prix des engrais, puis 6 à 18 mois avant impact sur les prix alimentaires en rayon</li>
+                <li>Le ratio Blé/Engrais est un indicateur avancé de la santé économique des agriculteurs et donc des rendements futurs</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>Application interactive</h3>
+            <p>Le dashboard est déployé en continu et accessible publiquement. Il se met à jour automatiquement chaque jour avec les dernières données de marché et d'actualités.</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://agro-sentinel.streamlit.app/" class="btn-primary" target="_blank" style="margin-right: 15px;">Acceder au dashboard</a>
+                <a href="https://github.com/brunochazeaud17-crypto/agro-aliment-pipeline" class="btn-secondary" target="_blank">Voir le code source</a>
+            </div>
+        </div>
+
+        <div class="glass-section">
+            <h3>Perspectives d'amélioration</h3>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li>Intégration de modèles prédictifs (séries temporelles, LSTM) pour prévoir l'évolution des prix des engrais</li>
+                <li>Ajout de données météorologiques pour affiner l'analyse des rendements agricoles</li>
+                <li>Élargissement du périmètre géographique (Amérique du Nord, Asie)</li>
+                <li>Mise en place d'un système d'alertes par email en cas de franchissement de seuils critiques</li>
+                <li>Analyse de l'impact des politiques agricoles (PAC, subventions) sur la souveraineté alimentaire</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; padding: 30px;">
+            <a href="index.html#projets-data" class="btn-secondary">← Retour aux projets Data</a>
+        </div>
+    </main>
+
+    <footer class="container" style="text-align: center; padding: 60px 0; opacity: 0.6; font-size: 0.8rem;">
+        <p>&copy; 2026 Bruno Chazeaud | De la donnée à la décision.</p>
+    </footer>
+</body>
+</html>
