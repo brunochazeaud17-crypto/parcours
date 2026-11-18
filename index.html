@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Chazeaud | Portfolio Data Scientist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">B.C</a>
+            <ul>
+                <li><a href="#parcours">Mon Odyssée</a></li>
+                <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#projets-data">Projets Data</a></li>
+                <li><a href="#projets-perso">Projets Perso</a></li>
+                <li><a href="#cv">Mon CV</a></li>
+                <li><a href="mailto:bruno.chazeaud.data@gmail.com">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="container">
+            <div class="hero-content">
+                <h1>Transformer la donnée en décisions éclairées.</h1>
+                <p>Issu d'un parcours universitaire en économie, finance et data science, je me spécialise dans la modélisation des risques économiques et financiers.</p>
+                <p>Mon objectif : exploiter les données pour éclairer la décision, fiabiliser les modèles de risque et rapprocher les enjeux métiers des méthodes quantitatives, avec une approche structurée, critique et orientée résultats.</p>
+                <div style="margin-top: 30px;">
+                    <a href="#projets-data" class="btn-primary">Voir mes projets Data</a>
+                    <a href="#parcours" class="btn-secondary">Mon parcours</a>
+                </div>
+            </div>
+            <div class="hero-image-box">
+                <img src="IMG_3989.png" alt="Bruno Chazeaud">
+            </div>
+        </section>
+
+        <section id="parcours" class="container">
+            <h2 class="section-title">Mon Odyssée Académique</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">Abidjan, Côte d'Ivoire</div>
+                    <h3>Bac S (Physique-Chimie)</h3>
+                    <p>C'est ici que tout commence. Une curiosité scientifique insatiable et le désir de comprendre les mécanismes du monde à travers la physique.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Licence & Master 1</div>
+                    <h3>Économie & Gestion</h3>
+                    <p>Apprendre à lire entre les chiffres. Comprendre les flux, les marchés et les comportements humains derrière l'économie mondiale.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Master 2</div>
+                    <h3>Ingénierie des Risques</h3>
+                    <p>Spécialisation dans la modélisation financière. Apprendre à prévoir l'imprévisible et à structurer des données complexes pour la finance.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Aujourd'hui</div>
+                    <h3>Nouveaux Défis</h3>
+                    <p>Fraîchement diplômé, je suis désormais ouvert à de nouveaux défis professionnels. Je souhaite mettre mes compétences analytiques et techniques au service de projets à fort impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiences" class="container">
+            <h2 class="section-title">Expériences Professionnelles</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h4>Data Analyst Pricing - Aliaxis France</h4>
+                    <p>Automatisation des processus d'extraction de statistiques clients, automatisation et maintenance de rapports Power BI, amélioration des outils de Pricing et optimisation des flux de données via Snowflake.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Snowflake</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">Pricing</span>
+                        <span class="tech-tag">Automatisation</span>
+                    </div>
+                </div>
+                <a href="projet-forsides.html" class="project-card">
+                    <h4>Actuaire / Data Scientist - FORSIDES France</h4>
+                    <p>Modélisation de risques d'inondations via Python et la bibliothèque CLIMADA lors de mon stage de fin d'études M2.</p>
+                    <span class="read-more">Consulter l'étude →</span>
+                </a>
+                <div class="project-card">
+                    <h4>Contrôleur de Gestion - Société Générale</h4>
+                    <p>Assistant contrôle et gestion à la Société Générale de Madagascar : pilotage des KPI et reporting financier.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets-data" class="container">
+            <h2 class="section-title">Projets Data Science</h2>
+            <div class="projects-grid">
+                <a href="projet-ethereum.html" class="project-card">
+                    <h4>Détection d'anomalies sur la blockchain Ethereum</h4>
+                    <p>Détection de wallets suspects sur la blockchain Ethereum via Isolation Forest et Autoencoder. Modélisation non supervisée pour la cybersécurité blockchain.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">Streamlit</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="read-more">Application →</span>
+                        <span class="read-more">GitHub →</span>
+                    </div>
+                </a>
+                
+                <a href="projet-agrosentinel.html" class="project-card">
+                    <h4>AgroSentinel : Veille sur la Souveraineté Alimentaire</h4>
+                    <p>Dashboard interactif d'analyse de la dépendance européenne aux engrais et de l'impact sur les prix alimentaires. Pipeline automatisé de collecte et d'analyse de données financières, matières premières et actualités.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">NLTK/VADER</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="read-more">Application →</span>
+                        <span class="read-more">GitHub →</span>
+                    </div>
+                </a>
+                
+                <a href="projet-rag-nicoll.html" class="project-card">
+                    <h4>Créer un Second Cerveau et l'utiliser avec un RAG</h4>
+                    <p>Conception d'une base de connaissances vectorielle et d'un assistant IA conversationnel (RAG) pour le support technique Nicoll (Aliaxis). Architecture souveraine On-Premise (Qwen 1.5B) & Cloud API (Gemini Flash) avec garde-fous anti-hallucination.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">RAG / LLM</span>
+                        <span class="tech-tag">ChromaDB</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Streamlit</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="read-more">Présentation →</span>
+                        <span class="read-more">Détails →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="projets-perso" class="container">
+            <h2 class="section-title">Projets Personnels</h2>
+            <div class="projects-grid">
+                <a href="projet-grimoire.html" class="project-card">
+                    <h4>Le Grimoire Parental</h4>
+                    <p>Application mobile interactive (Flutter) dédiée à la psychologie de la petite enfance.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
+                <a href="projet-zoom.html" class="project-card">
+                    <h4>Automatisation Zoom</h4>
+                    <p>Système intelligent de gestion automatique des inscriptions et rappels via n8n.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
+                <a href="projet-masterclass.html" class="project-card">
+                    <h4>Serveur & Déploiement</h4>
+                    <p>Configuration d'un serveur Linux (VPS) avec Nginx et Git pour l'hébergement de plateformes.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
+                <a href="projet-accompagnement.html" class="project-card">
+                    <h4>Paiement Sécurisé Stripe</h4>
+                    <p>Architecture Node.js intégrant l'API Stripe pour des transactions financières sécurisées.</p>
+                    <span class="read-more">Détails techniques →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION CV -->
+        <section id="cv" class="container">
+            <h2 class="section-title">Mon CV</h2>
+            <div class="cv-simple">
+                <p>Téléchargez mon curriculum vitae pour découvrir l'intégralité de mon parcours, mes compétences et mes expériences professionnelles.</p>
+                <a href="cv-bruno-chazeaud.pdf" target="_blank" class="btn-primary">Consulter mon CV</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container" style="text-align: center; padding: 60px 0; opacity: 0.6; font-size: 0.8rem;">
+        <p>&copy; 2026 Bruno Chazeaud | De la donnée à la décision.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Cerveau & Assistant RAG | Bruno Chazeaud</title>
+    
+    <!-- Préconnexion pour accélérer le chargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">B.C</a>
+            <a href="index.html#projets-data" style="color: var(--accent); text-decoration: none;">← Retour aux projets Data</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div style="text-align: center; padding: 40px 0;">
+            <h1>Créer un Second Cerveau et l'utiliser avec un RAG</h1>
+            <p>Assistant Technique & Commercial intelligent sur le catalogue Nicoll (Aliaxis) — Du patrimoine documentaire statique à l'intelligence conversationnelle sourcée</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>Philosophie : Du « Second Cerveau » au RAG d'entreprise</h3>
+            <p>Dans l'industrie, la connaissance technique existe mais reste figée dans des centaines de pages de documentation PDF (fiches techniques, notices de pose, avis CSTB, tableaux de cotes). Le concept de <strong>Second Cerveau</strong> consiste à extérioriser, structurer et indexer ce patrimoine documentaire sous forme de mémoire sémantique interrogeable instantanément.</p>
+            <p style="margin-top: 10px;">Couplé à une architecture <strong>RAG (Retrieval-Augmented Generation)</strong>, ce Second Cerveau fonctionne comme un <em>« examen à livre ouvert »</em> : au lieu de laisser une IA générative répondre de mémoire au risque d'inventer une référence ou une cote inexistante (hallucination), le système extrait d'abord le paragraphe officiel exact, le place sous les yeux du modèle de langage (LLM) et lui impose de formuler une réponse factuelle en citant systématiquement le document et la page source.</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>Contexte & Enjeux Métier (PoC Nicoll by Aliaxis®)</h3>
+            <p>Les équipes d'assistance technique et commerciale de Nicoll (Groupe Aliaxis) sont quotidiennement sollicitées par des artisans, installateurs, bureaux d'études et distributeurs sur des questions pointues : cotes d'encombrement, classes de résistance (A15, B125), compatibilité des raccords ou protocoles de pose.</p>
+            <ul style="margin-top: 15px; margin-left: 20px; color: var(--secondary);">
+                <li><strong>Constat terrain</strong> : Une recherche complexe dans des dizaines de PDF fait perdre <strong>5 à 15 minutes</strong> par sollicitation.</li>
+                <li><strong>Objectif opérationnel</strong> : Déployer un assistant conversationnel capable de répondre en quelques secondes en langage naturel, avec preuve documentaire à l'appui, pour libérer du temps au profit du conseil à forte valeur ajoutée.</li>
+                <li><strong>Conformité & Privacy by Design</strong> : Garantir zéro fuite de données confidentielles (périmètre 100 % fiches techniques publiques, conformité RGPD et secret industriel).</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>Architecture technique du « Second Cerveau »</h3>
+            <p>Le pipeline RAG a été conçu de bout en bout en Python autour de quatre briques clés :</p>
+            <div style="margin-top: 20px;">
+                <h4 style="color: var(--accent);">1. Ingestion & Chunking respectueux de la structure métier</h4>
+                <p>Extraction et nettoyage des PDF officiels (gamme évacuation et caniveaux <em>Connecto</em>) via <code>pypdf</code>. Découpage méthodique par blocs cohérents de paragraphes (<code>max_chars=600</code>) afin de ne jamais tronquer un tableau dimensionnel ou une référence produit (ex. <code>CAN10B</code>, <code>GR77P</code>, <code>NOTCINV</code>).</p>
+
+                <h4 style="color: var(--accent); margin-top: 15px;">2. Vectorisation sémantique multilingue & ChromaDB</h4>
+                <p>Traduction mathématique du sens de chaque segment via le modèle d'embeddings <code>paraphrase-multilingual-MiniLM-L12-v2</code> (Sentence-Transformers) et indexation persistante dans <strong>ChromaDB</strong> avec conservation des métadonnées (nom du PDF et numéro de page).</p>
+
+                <h4 style="color: var(--accent); margin-top: 15px;">3. Recherche Hybride (Sémantique + Reranking Lexical)</h4>
+                <p>Combinaison de la proximité vectorielle (comprendre que <em>« passage de voitures »</em> correspond à la <em>« classe de résistance B125 »</em>) et d'un algorithme de reranking accordant un bonus aux correspondances exactes de références techniques dans le titre ou le corps du document.</p>
+
+                <h4 style="color: var(--accent); margin-top: 15px;">4. Garde-fous Anti-Hallucination</h4>
+                <p>Double verrou de sécurité : filtrage par seuil de distance vectorielle (<code>1.30</code>), détection précoce des requêtes hors périmètre catalogue (ex. rejet explicite et courtois des demandes sur la classe poids lourds <code>D400</code> absente de la gamme), température très basse (<code>0.05</code>) et obligation de citer la source.</p>
+            </div>
+        </div>
+
+        <div class="glass-section">
+            <h3>Comparaison stratégique : IA 100 % Locale vs Cloud API Sécurisée</h3>
+            <p>Afin d'éclairer la prise de décision de la Direction, deux architectures d'inférence et deux interfaces (prototype <strong>Streamlit</strong> puis Web App moderne <strong>FastAPI + Glassmorphism</strong> avec streaming temps réel SSE) ont été développées et benchmarkées :</p>
+            <ul style="margin-top: 15px; margin-left: 20px; color: var(--secondary);">
+                <li><strong>Option A — 100 % Locale & Souveraine (On-Premise)</strong> : Inférence locale sur processeur standard via <strong>KoboldCPP</strong> et le modèle compact <strong>Qwen 1.5B / 3B</strong>. Fonctionnement 100 % hors-ligne, coût récurrent de <strong>0 € / mois</strong>, étanchéité totale des données (temps de réponse de 30 à 50 s sur CPU standard).</li>
+                <li><strong>Option B — Hybride Cloud API Haute Performance (Gemini Flash)</strong> : Le socle documentaire et la base vectorielle restent hébergés en interne ; seul le court extrait pertinent est transmis via API sécurisée lors de la question. Génération en streaming mot à mot en <strong>moins de 1,5 seconde</strong> pour un coût marginal (~5 à 15 € / mois).</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>Technologies utilisées</h3>
+            <div style="margin-bottom: 15px;">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">RAG</span>
+                <span class="tech-tag">ChromaDB</span>
+                <span class="tech-tag">Sentence-Transformers</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">KoboldCPP / Qwen 1.5B</span>
+                <span class="tech-tag">Gemini Flash API</span>
+                <span class="tech-tag">PyPDF</span>
+                <span class="tech-tag">SSE Streaming</span>
+            </div>
+            <p><strong>Architecture</strong> : Base vectorielle persistante locale, API REST & Streaming Server-Sent Events (FastAPI), Interface Web responsive avec volet de preuves documentaires.</p>
+        </div>
+
+        <div class="glass-section">
+            <h3>Résultats & Impact Métier</h3>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li><strong>Précision technique validée</strong> : Extraction exacte des dimensions (ex. grille piscine <code>GR77P</code> : 500 × 128 × 20 mm, classe A15), des accessoires de raccordement (<code>NAT177</code>, <code>NAV177</code>, <code>STCAN</code>, vis <code>FIXCAN</code>) et des protocoles de pose (semelle béton C25/30 et jeu de dilatation de 3 mm du caniveau invisible <code>NOTCINV</code>).</li>
+                <li><strong>Zéro hallucination</strong> : Succès à 100 % sur les tests contradictoires (refus d'inventer une référence sur les classes lourdes <code>D400</code> hors catalogue).</li>
+                <li><strong>ROI rapide</strong> : Gain estimé de 15 à 30 minutes par jour et par téléconseiller technique, avec un amortissement en moins de 6 mois.</li>
+            </ul>
+        </div>
+
+        <div class="glass-section">
+            <h3>Présentation Interactive & Démonstrations Vidéo</h3>
+            <p>Une présentation interactive destinée à la Direction (incluant la vulgarisation du RAG, le comparatif technico-économique et les démonstrations vidéo des versions Locale 1.5B et Cloud Gemini Flash) est disponible en ligne :</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://brunochazeauddata.github.io/Nicoll_RAG/" class="btn-primary" target="_blank">Consulter la présentation interactive</a>
+            </div>
+        </div>
+
+        <div class="glass-section">
+            <h3>Perspectives d'évolution</h3>
+            <ul style="margin-left: 20px; color: var(--secondary);">
+                <li>Passage à l'échelle du Second Cerveau sur l'intégralité du catalogue Nicoll (Bâtiment, Sanitaire, Gestion des eaux)</li>
+                <li>Déploiement pilote auprès des équipes d'assistance technique puis intégration à l'intranet d'entreprise</li>
+                <li>Évolution vers une architecture multi-agents spécialisés par gamme de produits et aide au chiffrage de devis</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; padding: 30px;">
+            <a href="index.html#projets-data" class="btn-secondary">← Retour aux projets Data</a>
+        </div>
+    </main>
+
+    <footer class="container" style="text-align: center; padding: 60px 0; opacity: 0.6; font-size: 0.8rem;">
+        <p>&copy; 2026 Bruno Chazeaud | De la donnée à la décision.</p>
+    </footer>
+</body>
+</html>
